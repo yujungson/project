@@ -1,0 +1,90 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-08-13 22:29+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: .\config\settings.py:120 .\users\models.py:32
+msgid "Korean"
+msgstr ""
+
+#: .\config\settings.py:121 .\users\models.py:31
+msgid "English"
+msgstr ""
+
+#: .\templates\base.html:26
+msgid "Search by City"
+msgstr "도시로 검색"
+
+#: .\templates\partials\footer.html:6
+msgid "Please don't copy us"
+msgstr "불펌금지"
+
+#: .\templates\partials\footer.html:9
+msgid "All rights reserved"
+msgstr "저작권"
+
+#: .\templates\rooms\room_detail.html:35
+msgid "Remove from Favourites"
+msgstr "즐겨찾기에서 제거"
+
+#: .\templates\rooms\room_detail.html:38
+msgid "Save to Favourites"
+msgstr "즐겨찾기에 저장"
+
+#: .\templates\rooms\room_list.html:27
+#, python-format
+msgid ""
+"Page\n"
+"            %(current_page)s of %(total_pages)s"
+msgstr ""
+
+#: .\users\mixins.py:13
+msgid "Can't go there"
+msgstr "접근할 수 없습니다"
+
+#: .\users\models.py:22
+msgid "Male"
+msgstr "남성"
+
+#: .\users\models.py:23
+msgid "Female"
+msgstr "여성"
+
+#: .\users\models.py:24
+msgid "Other"
+msgstr "기타"
+
+#: .\users\models.py:51
+msgid "first name"
+msgstr "이름"
+
+#: .\users\models.py:55
+msgid "gender"
+msgstr "성별"
+
+#: .\users\models.py:57
+msgid "bio"
+msgstr "바이오"
+
+#: .\users\models.py:60
+msgid "language"
+msgstr "언어"
+
+#: .\users\models.py:88
+msgid "Verify Airbnb Account"
+msgstr "계정 확인"
