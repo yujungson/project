@@ -64,3 +64,7 @@ def edit_reservation(request, pk, verb):
     reservation.save()
     messages.success(request, "Reservation Updated")
     return redirect(reverse("reservations:detail", kwargs={"pk": reservation.pk}))
+
+
+def show_my_reservation(request, pk):
+    pass
