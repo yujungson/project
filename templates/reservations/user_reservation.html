@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+{{user.first_name}}'s Reservation
+{% endblock page_title %}
+
+{% block search-bar %}
+{% endblock search-bar %}
+
+{% block content %}
+
+<div class="h-full">
+    {{user_obj.reservation}}
+
+
+</div>
+
+{% endblock content %}

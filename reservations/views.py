@@ -5,6 +5,7 @@ from django.views.generic import View
 from django.contrib import messages
 from django.shortcuts import render, redirect, reverse
 from rooms import models as room_models
+from users import models as user_models
 from reviews import forms as review_forms
 from . import models
 
@@ -66,5 +67,26 @@ def edit_reservation(request, pk, verb):
     return redirect(reverse("reservations:detail", kwargs={"pk": reservation.pk}))
 
 
-def show_my_reservation(request, pk):
-    pass
+class ShowUserReservationView(View):
+    def get(self, *args, **kwargs):
+        pk = kwargs.get("pk")
+        reservation = models.Reservation.objects.get_or_none(pk=pk)
+        model = user_models.User
+        context_object_name = "user_obj"
+        print(model.objects.values())
+        return render(
+            self.request,
+            "reservations/user_reservation.html",
+            {"reservation": reservation, "user": context_object_name},
+        )
+
+
+class ShowHostReservationView(View):
+    def get(self, *args, **kwargs):
+        pk = kwargs.get("pk")
+        reservation = models.Reservation.objects.get_or_none(pk=pk)
+        return render(
+            self.request,
+            "reservations/host_reservation.html",
+            {"reservation": reservation},
+        )
