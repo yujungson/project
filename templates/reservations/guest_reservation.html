@@ -10,9 +10,9 @@
 {% block content %}
 
 <div class="h-full">
-    {{user_obj.reservation}}
-
-
+    {% for i in reservation %}
+    {{i}}
+    {% endfor %}
 </div>
 
 {% endblock content %}

@@ -111,7 +111,7 @@
                 {% endfor %}
             </div>
             <div class="cal-grid">
-                {% for day in calendar.get_days  %}
+                {% for day in calendar.get_days %}
                 {% is_booked room day as is_booked_bool %}
                 {% if day.number != 0 %}
                 {% if day.past %}

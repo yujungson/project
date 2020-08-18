@@ -3,14 +3,15 @@ import requests
 from django.utils import translation
 from django.http import HttpResponse
 from django.contrib.auth.views import PasswordChangeView
-from django.views.generic import FormView, DetailView, UpdateView
+from django.views.generic import FormView, DetailView, UpdateView, View
 from django.urls import reverse_lazy
-from django.shortcuts import redirect, reverse
+from django.shortcuts import redirect, reverse, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.files.base import ContentFile
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from reservations import models as reservation_models
 from . import forms, models, mixins
 
 
@@ -255,3 +256,19 @@ def switch_language(request):
     if lang is not None:
         request.session[translation.LANGUAGE_SESSION_KEY] = lang
     return HttpResponse(status=200)
+
+
+def show_guest_reservation(request, *args, **kwargs):
+    user = request.user
+    reservation = []
+    reservation.append(reservation_models.Reservation.objects.filter(guest=user))
+    return render(
+        request,
+        "reservations/guest_reservation.html",
+        {"reservation": reservation, "user": user},
+    )
+
+
+class ShowHostReservationView(View):
+    def get(self, *args, **kwargs):
+        pass

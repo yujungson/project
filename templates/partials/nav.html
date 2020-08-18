@@ -15,10 +15,10 @@
     {% endif %}
 
     {% if request.session.is_hosting %}
-    <li class="nav_link"><a href="{% url "reservations:host-reservation" user.pk %}">{% trans "My Reservations" %}</a>
+    <li class="nav_link"><a href="{% url "users:host-reservation" user.pk %}">{% trans "My Reservations" %}</a>
     </li>
     {% else %}
-    <li class="nav_link"><a href="{% url "reservations:user-reservation" user.pk %}">{% trans "My Reservations" %}</a>
+    <li class="nav_link"><a href="{% url "users:guest-reservation" user.pk %}">{% trans "My Reservations" %}</a>
     </li>
     {% endif %}
 
