@@ -21,8 +21,13 @@ def create(request, room, year, month, day, time):
         models.BookedDay.objects.get(date=date_obj, time=time, reservation__room=room)
         raise CreateError()
     except (room_models.Room.DoesNotExist, CreateError):
-        messages.error(request, "Can't Reserve That Room")
-        return redirect(reverse("core:home"))
+        messages.error(request, "This is the time that has already been reserved.")
+        return redirect(
+            reverse(
+                "reservations:choose-time",
+                kwargs={"room": room.pk, "year": year, "month": month, "day": day},
+            )
+        )
     except models.BookedDay.DoesNotExist:
         reservation = models.Reservation.objects.create(
             guest=request.user, room=room, date=date_obj, time=time
