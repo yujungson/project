@@ -111,16 +111,16 @@
                 {% endfor %}
             </div>
             <div class="cal-grid">
-                {% for day in calendar.get_days %}
-                {% is_booked room day as is_booked_bool %}
-                {% if day.number != 0 %}
-                {% if day.past %}
-                <span class="cal-number bg-gray-200 text-gray-400">{{day}}</span>
+                {% for date in calendar.get_days %}
+                {% is_booked room date time as is_booked_bool %}
+                {% if date.day != 0 %}
+                {% if date.past %}
+                <span class="cal-number bg-gray-200 text-gray-400">{{date}}</span>
                 {% elif is_booked_bool %}
-                <span class="cal-number bg-gray-200 text-gray-400 line-through">{{day}}</span>
+                <span class="cal-number bg-gray-200 text-gray-400 line-through">{{date}}</span>
                 {% else %}
-                <a href="{% url 'reservations:create' room.pk day.year day.month day.number %}"
-                    class="cal-number bg-gray-200 text-gray-700 hover:bg-teal-400 hover:text-white hover:font-medium">{{day}}</a>
+                <a href="{% url 'reservations:choose-time' room.pk date.year date.month date.day %}"
+                    class="cal-number bg-gray-200 text-gray-700 hover:bg-teal-400 hover:text-white hover:font-medium">{{date}}</a>
                 {% endif %}
                 {% else %}
                 <span></span>

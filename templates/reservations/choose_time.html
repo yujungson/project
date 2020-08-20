@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+Reservation
+{% endblock page_title %}
+
+{% block content %}
+<div>
+    <div>
+        <span class="flex flex-col">Lunch Time</span>
+        {% for time in lunchtime %}
+        <a href="{% url 'reservations:create' room year month day time %}">{{time}}</a>
+        {% endfor %}
+
+        <span class="flex flex-col">Dinner Time</span>
+        {% for time in dinnertime %}
+        <a href="{% url 'reservations:create' room year month day time %}">{{time}}</a>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock content %}

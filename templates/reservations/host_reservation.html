@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+{{user.first_name}}'s Reservation
+{% endblock page_title %}
+
+{% block content %}
+
+
+Host's Reservations
+{% for i in room %}
+{% for reserv in reservation %}
+{% if i.name == reserv.room.name %}
+{% if reserv.isfinished == False %}
+<span class="flex flex-col">Reservations In progress</span>
+<span class="flex flex-col">{{reserv.room.name}} {{reserv.check_in}}</span>
+
+
+{% endif %}
+
+
+{% endif %}
+{% endfor %}
+{% endfor %}
+
+
+
+
+
+
+
+
+
+{% endblock content %}

@@ -20,15 +20,15 @@ Search
 
     <div class="container mx-auto pb-10 flex flex-col items-center">
         <h3 class="mb-12 text-2xl">Results</h3>
-        <div class="flex flex-wrap -mx-40 mb-10">
+        <div class="flex -mx-40 mb-10">
             {% for room in rooms %}
-            <div class="w-1/2 mb-10 px-2">
+            <div class="w-full mb-10 px-2">
                 <a href="{% url 'rooms:detail' room.pk %}">
                     <div class="w-full h-64 bg-cover bg-center rounded-lg mb-2"
                         style="background-image: url({{room.first_photo}});">
                     </div>
                     <div class="flex justify-between mb-2">
-                        <div class="w-4/5 block truncate overflos-hidden flex">
+                        <div class="w-1/2 block truncate overflos-hidden flex">
                             {% if room.host.superhost %}
                             <span
                                 class="mr-2 uppercase font-medium text-xs border border-black text-black rounded py-px px-1">superhost</span>

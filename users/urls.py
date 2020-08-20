@@ -20,9 +20,5 @@ urlpatterns = [
     path("switch-hosting/", views.switch_hosting, name="switch-hosting"),
     path("switch-language/", views.switch_language, name="switch-language"),
     path("guest/<int:pk>/", views.show_guest_reservation, name="guest-reservation"),
-    path(
-        "host/<int:pk>/",
-        views.ShowHostReservationView.as_view(),
-        name="host-reservation",
-    ),
+    path("host/<int:pk>/", views.show_host_reservation, name="host-reservation",),
 ]

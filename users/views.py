@@ -1,5 +1,6 @@
 import os
 import requests
+from itertools import chain
 from django.utils import translation
 from django.http import HttpResponse
 from django.contrib.auth.views import PasswordChangeView
@@ -11,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.files.base import ContentFile
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from rooms import models as room_models
 from reservations import models as reservation_models
 from . import forms, models, mixins
 
@@ -260,8 +262,7 @@ def switch_language(request):
 
 def show_guest_reservation(request, *args, **kwargs):
     user = request.user
-    reservation = []
-    reservation.append(reservation_models.Reservation.objects.filter(guest=user))
+    reservation = reservation_models.Reservation.objects.filter(guest=user)
     return render(
         request,
         "reservations/guest_reservation.html",
@@ -269,6 +270,14 @@ def show_guest_reservation(request, *args, **kwargs):
     )
 
 
-class ShowHostReservationView(View):
-    def get(self, *args, **kwargs):
-        pass
+def show_host_reservation(request, *args, **kwargs):
+    user = request.user
+    room = room_models.Room.objects.filter(host=user)
+    reservation = reservation_models.Reservation.objects.all()
+
+    return render(
+        request,
+        "reservations/host_reservation.html",
+        {"reservation": reservation, "room": room},
+    )
+

@@ -14,29 +14,45 @@ class CreateError(Exception):
 
 
 @login_required
-def create(request, room, year, month, day):
+def create(request, room, year, month, day, time):
     try:
         date_obj = datetime.datetime(year, month, day)
         room = room_models.Room.objects.get(pk=room)
-        models.BookedDay.objects.get(day=date_obj, reservation__room=room)
+        models.BookedDay.objects.get(date=date_obj, time=time, reservation__room=room)
         raise CreateError()
     except (room_models.Room.DoesNotExist, CreateError):
         messages.error(request, "Can't Reserve That Room")
         return redirect(reverse("core:home"))
     except models.BookedDay.DoesNotExist:
         reservation = models.Reservation.objects.create(
-            guest=request.user,
-            room=room,
-            check_in=date_obj,
-            check_out=date_obj + datetime.timedelta(days=1),
+            guest=request.user, room=room, date=date_obj, time=time
         )
         return redirect(reverse("reservations:detail", kwargs={"pk": reservation.pk}))
 
 
+@login_required
+def choose_time(request, room, year, month, day):
+    lunchtime = ["11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00"]
+    dinnertime = ["17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"]
+    return render(
+        request,
+        "reservations/choose_time.html",
+        {
+            "lunchtime": lunchtime,
+            "dinnertime": dinnertime,
+            "year": year,
+            "month": month,
+            "day": day,
+            "room": room,
+        },
+    )
+
+
 class ReservationDetailView(View):
     def get(self, *args, **kwargs):
-        pk = kwargs.get("pk")
-        reservation = models.Reservation.objects.get_or_none(pk=pk)
+        room_pk = kwargs.get("pk")
+        reservation = models.Reservation.objects.get_or_none(pk=room_pk)
+        print(reservation)
         if not reservation or (
             reservation.guest != self.request.user
             and reservation.room.host != self.request.user
