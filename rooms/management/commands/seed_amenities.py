@@ -1,39 +1,24 @@
 from django.core.management.base import BaseCommand
-from rooms.models import Amenity
+from rooms.models import Amenities
 
 
 class Command(BaseCommand):
 
     help = "This command creates amenities"
 
+    def add_arguments(self, parser):
+        parser.add_argument("--number", help="How many amenities do you want to create")
+
     def handle(self, *args, **options):
         amenities = [
-            "Kitchen",
-            "Shampoo",
-            "Heating",
-            "Air conditioning",
-            "Washer",
-            "Dryer",
-            "Wifi",
-            "Breakfast",
-            "Indoor fireplace",
-            "Hangers",
-            "Iron",
-            "Hair dryer",
-            "Laptop-friendly workspace",
-            "TV",
-            "Crib",
-            "High chair",
-            "Self check-in",
-            "Smoke alarm",
-            "Carbon monoxide alarm",
-            "Private bathroom",
-            "Piano",
-            "Beachfront",
-            "Waterfront",
-            "Ski-in/ski-out",
+            "남녀 공용 화장실",
+            "바",
+            "애완견 환영",
+            "어린이 환영",
+            "어린이용 높은 의자",
+            "어린이용 보조 의자",
+            "화장실",
         ]
-
-        for a in amenities:
-            Amenity.objects.create(name=a)
-        self.stdout.write(self.style.SUCCESS("Amenities created!"))
+        for f in amenities:
+            Amenities.objects.create(name=f)
+        self.stdout.write(self.style.SUCCESS(f"{len(amenities)} amenities created!"))

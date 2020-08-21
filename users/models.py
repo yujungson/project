@@ -38,12 +38,10 @@ class User(AbstractUser):
     CURRENCY_CHOICES = ((CURRENCY_USD, "USD"), (CURRENCY_KRW, "KRW"))
 
     LOGIN_EMAIL = "email"
-    LOGIN_GITHUB = "github"
     LOGING_KAKAO = "kakao"
 
     LOGIN_CHOICES = (
         (LOGIN_EMAIL, "Email"),
-        (LOGIN_GITHUB, "Github"),
         (LOGING_KAKAO, "Kakao"),
     )
 

@@ -1,30 +1,64 @@
 from django import forms
-from django_countries.fields import CountryField
 from . import models
 
 
 class SearchForm(forms.Form):
 
-    city = forms.CharField(initial="Anywhere")
-    country = CountryField(default="KR").formfield()
-    room_type = forms.ModelChoiceField(
-        required=False, empty_label="Any Kind", queryset=models.RoomType.objects.all()
-    )
+    city = forms.CharField(required=False)
     price = forms.IntegerField(required=False)
     guests = forms.IntegerField(required=False)
-    beds = forms.IntegerField(required=False)
-    bedrooms = forms.IntegerField(required=False)
-    baths = forms.IntegerField(required=False)
-    instant_book = forms.BooleanField(required=False)
-    superhost = forms.BooleanField(required=False)
-    amenities = forms.ModelMultipleChoiceField(
+    instant_book = forms.ChoiceField(
+        choices=[("True", "POSSIBLE"), ("False", "IMPOSIBLE")],
+        widget=forms.RadioSelect,
+    )
+    service_options = forms.ModelMultipleChoiceField(
         required=False,
-        queryset=models.Amenity.objects.all(),
+        queryset=models.ServiceOptions.objects.all(),
         widget=forms.CheckboxSelectMultiple,
     )
-    facilities = forms.ModelMultipleChoiceField(
+    highlights = forms.ModelMultipleChoiceField(
         required=False,
-        queryset=models.Facility.objects.all(),
+        queryset=models.Highlights.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+    )
+    accessibilities = forms.ModelMultipleChoiceField(
+        required=False,
+        queryset=models.Accessibility.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+    )
+    offerings = forms.ModelMultipleChoiceField(
+        required=False,
+        queryset=models.Offerings.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+    )
+    dining_options = forms.ModelMultipleChoiceField(
+        required=False,
+        queryset=models.DiningOptions.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+    )
+    amenities = forms.ModelMultipleChoiceField(
+        required=False,
+        queryset=models.Amenities.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+    )
+    atmosphere = forms.ModelMultipleChoiceField(
+        required=False,
+        queryset=models.Atmosphere.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+    )
+    crowd = forms.ModelMultipleChoiceField(
+        required=False,
+        queryset=models.Crowd.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+    )
+    planning = forms.ModelMultipleChoiceField(
+        required=False,
+        queryset=models.Planning.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+    )
+    payments = forms.ModelMultipleChoiceField(
+        required=False,
+        queryset=models.Payments.objects.all(),
         widget=forms.CheckboxSelectMultiple,
     )
 
@@ -47,7 +81,6 @@ class CreateRoomForm(forms.ModelForm):
         fields = (
             "name",
             "description",
-            "country",
             "city",
             "price",
             "address",
@@ -58,10 +91,16 @@ class CreateRoomForm(forms.ModelForm):
             "check_in",
             "check_out",
             "instant_book",
-            "room_type",
+            "service_options",
+            "highlights",
+            "accessibilities",
+            "offerings",
+            "dining_options",
             "amenities",
-            "facilities",
-            "house_rules",
+            "atmosphere",
+            "crowd",
+            "planning",
+            "payments",
         )
 
     def save(self, *args, **kwargs):

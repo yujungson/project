@@ -48,23 +48,63 @@
         <p class="border-section">
             {{room.description}}
         </p>
-        <div class="border-section">
-            <h4 class="font-medium text-lg mb-5">Amenities</h4>
-            {% for a in room.amenities.all %}
-            <li class="mb-2">{{a}}</li>
-            {% endfor %}
-        </div>
-        <div class="border-section">
-            <h4 class="font-medium text-lg mb-5">Facilities</h4>
-            {% for a in room.facilities.all %}
-            <li class="mb-2">{{a}}</li>
-            {% endfor %}
-        </div>
-        <div class="border-section">
-            <h4 class="font-medium text-lg mb-5">House Rules</h4>
-            {% for a in room.house_rules.all %}
-            <li class="mb-2">{{a}}</li>
-            {% endfor %}
+        <div>
+            <div class="grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-2 m-5 mb-10">
+                <div class="bg-white overflow-hidden hover:bg-green-100 border border-gray-200 p-1">
+                    <h4 class="font-medium text-lg mb-5">Highlights</h4>
+                    {% for a in room.highlights.all %}
+                    <li class="mb-2">{{a}}</li>
+                    {% endfor %}
+                </div>
+                <div class="bg-white overflow-hidden hover:bg-green-100 border border-gray-200 p-3">
+                    <h4 class="font-medium text-lg mb-5">Accessibility</h4>
+                    {% for a in room.accessibilities.all %}
+                    <li class="mb-2">{{a}}</li>
+                    {% endfor %}
+                </div>
+                <div class="bg-white overflow-hidden hover:bg-green-100 border border-gray-200 p-3">
+                    <h4 class="font-medium text-lg mb-5">Offerings</h4>
+                    {% for a in room.offerings.all %}
+                    <li class="mb-2">{{a}}</li>
+                    {% endfor %}
+                </div>
+                <div class="bg-white overflow-hidden hover:bg-green-100 border border-gray-200 p-3">
+                    <h4 class="font-medium text-lg mb-5">Dining Options</h4>
+                    {% for a in room.dining_options.all %}
+                    <li class="mb-2">{{a}}</li>
+                    {% endfor %}
+                </div>
+                <div class="bg-white overflow-hidden hover:bg-green-100 border border-gray-200 p-3">
+                    <h4 class="font-medium text-lg mb-5">Amenities</h4>
+                    {% for a in room.amenities.all %}
+                    <li class="mb-2">{{a}}</li>
+                    {% endfor %}
+                </div>
+                <div class="bg-white overflow-hidden hover:bg-green-100 border border-gray-200 p-3">
+                    <h4 class="font-medium text-lg mb-5">Atmosphere</h4>
+                    {% for a in room.atmosphere.all %}
+                    <li class="mb-2">{{a}}</li>
+                    {% endfor %}
+                </div>
+                <div class="bg-white overflow-hidden hover:bg-green-100 border border-gray-200 p-3">
+                    <h4 class="font-medium text-lg mb-5">Crowd</h4>
+                    {% for a in room.crowd.all %}
+                    <li class="mb-2">{{a}}</li>
+                    {% endfor %}
+                </div>
+                <div class="bg-white overflow-hidden hover:bg-green-100 border border-gray-200 p-3">
+                    <h4 class="font-medium text-lg mb-5">Planning</h4>
+                    {% for a in room.planning.all %}
+                    <li class="mb-2">{{a}}</li>
+                    {% endfor %}
+                </div>
+                <div class="bg-white overflow-hidden hover:bg-green-100 border border-gray-200 p-3">
+                    <h4 class="font-medium text-lg mb-5">Payments</h4>
+                    {% for a in room.payments.all %}
+                    <li class="mb-2">{{a}}</li>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
         <div class="mt-10">
             <h4 class="font-medium text-2xl mb-5">Reviews</h4>

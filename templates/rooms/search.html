@@ -8,9 +8,9 @@ Search
 {% endblock search-bar %}
 
 {% block content %}
-<div class="h-full">
-    <div
-        class="container lg:w-5/12 md:w-1/2 xl:w-1/4 mx-auto my-20 flex flex-col items-center border p-6 border-gray-400">
+<div class="-mx-3 md:flex mb-6">
+    <div class="md:w-1/2 px-3 mb-6 md:mb-0 container w-auto flex-auto items-center border p-6 border-gray-400"
+        style="margin-right: 10px; margin-left: 100px;">
         <form method="get" action="{% url "rooms:search" %}">
             {{form.as_p}}
             <button class="btn bg-red-500 text-white mt-5">Search</button>
@@ -18,23 +18,23 @@ Search
     </div>
 
 
-    <div class="container mx-auto pb-10 flex flex-col items-center">
+    <div class="md:w-1/2 px-3 container mx-auto pb-10 flex flex-col items-center border p-6 border-gray-400"
+        style="margin-right: 100px; margin-left: 10px;">
         <h3 class="mb-12 text-2xl">Results</h3>
-        <div class="flex -mx-40 mb-10">
+        <div class="flex flex-wrap -mx-40 mb-10">
             {% for room in rooms %}
-            <div class="w-full mb-10 px-2">
+            <div class="w-1/2 mb-10 px-2">
                 <a href="{% url 'rooms:detail' room.pk %}">
                     <div class="w-full h-64 bg-cover bg-center rounded-lg mb-2"
                         style="background-image: url({{room.first_photo}});">
                     </div>
                     <div class="flex justify-between mb-2">
-                        <div class="w-1/2 block truncate overflos-hidden flex">
+                        <div class="w-4/5 block truncate overflos-hidden flex">
                             {% if room.host.superhost %}
                             <span
                                 class="mr-2 uppercase font-medium text-xs border border-black text-black rounded py-px px-1">superhost</span>
                             {% endif %}
-                            <span class="text-sm text-gray-600 block truncate font-light">{{room.city}},
-                                {{room.country.name}}</span>
+                            <span class="text-sm text-gray-600 block truncate font-light">{{room.city}}</span>
                         </div>
                         <span class="text-sm flex items-center">
                             <i class="fas fa-star text-red-500 text-xs mr-px"></i> {{room.total_rating}}

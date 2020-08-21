@@ -19,37 +19,86 @@ class AbstractItem(core_models.TimeStampedModel):
         return self.name
 
 
-class RoomType(AbstractItem):
+class ServiceOptions(AbstractItem):  # roomtype
 
-    """ RoomType Object Definition """
-
-    class Meta:
-        verbose_name = "Room Type"
-        ordering = ["name"]
-
-
-class Amenity(AbstractItem):
-
-    """ Amenity Model Definition """
+    """ ServiceOptions Model Definition """
 
     class Meta:
-        verbose_name_plural = "Amenities"
+        verbose_name = "Service Options"
 
 
-class Facility(AbstractItem):
+class Highlights(AbstractItem):  # amenity
 
-    """ Facility Model Definition """
-
-    class Meta:
-        verbose_name_plural = "Facilities"
-
-
-class HouseRule(AbstractItem):
-
-    """ HouseRule Model Definition """
+    """ Highlights Model Definition """
 
     class Meta:
-        verbose_name = "House Rule"
+        verbose_name_plural = "Highlights"
+
+
+class Accessibility(AbstractItem):  # facility
+
+    """ Accessibility Model Definition """
+
+    pass
+
+    class Meta:
+        verbose_name_plural = "Accessibilities"
+
+
+class Offerings(AbstractItem):  # houserule
+
+    """ Offerings Model Definition """
+
+    class Meta:
+        verbose_name = "Offerings"
+
+
+class DiningOptions(AbstractItem):
+
+    """ DiningOptions Model Definition """
+
+    class Meta:
+        verbose_name = "DiningOptions"
+
+
+class Amenities(AbstractItem):
+
+    """ Amenities Model Definition """
+
+    class Meta:
+        verbose_name = "Amenities"
+
+
+class Atmosphere(AbstractItem):
+
+    """ Atmosphere Model Definition """
+
+    class Meta:
+        verbose_name = "Atmosphere"
+
+
+class Crowd(AbstractItem):
+
+    """ Crowd Model Definition """
+
+    class Meta:
+        verbose_name = "Crowds"
+
+
+class Planning(AbstractItem):
+
+    """ Planning Model Definition """
+
+    class Meta:
+        verbose_name = "Planning"
+
+
+class Payments(AbstractItem):
+
+    """ Payments Model Definition """
+
+    class Meta:
+        verbose_name = "Payments"
 
 
 class Photo(core_models.TimeStampedModel):
@@ -74,7 +123,7 @@ class Room(core_models.TimeStampedModel):
     city = models.CharField(max_length=80)
     price = models.IntegerField()
     address = models.CharField(max_length=140)
-    guests = models.IntegerField()
+    guests = models.IntegerField(help_text="How many people will be staying?")
     beds = models.IntegerField()
     bedrooms = models.IntegerField()
     baths = models.IntegerField()
@@ -84,12 +133,22 @@ class Room(core_models.TimeStampedModel):
     host = models.ForeignKey(
         "users.User", related_name="rooms", on_delete=models.CASCADE
     )
-    room_type = models.ForeignKey(
-        "RoomType", related_name="rooms", on_delete=models.SET_NULL, null=True
+    service_options = models.ForeignKey(
+        "ServiceOptions", related_name="rooms", on_delete=models.SET_NULL, null=True
     )
-    amenities = models.ManyToManyField("Amenity", related_name="rooms", blank=True)
-    facilities = models.ManyToManyField("Facility", related_name="rooms", blank=True)
-    house_rules = models.ManyToManyField("HouseRule", related_name="rooms", blank=True)
+    highlights = models.ManyToManyField("Highlights", related_name="rooms", blank=True)
+    accessibilities = models.ManyToManyField(
+        "Accessibility", related_name="rooms", blank=True
+    )
+    offerings = models.ManyToManyField("Offerings", related_name="rooms", blank=True)
+    dining_options = models.ManyToManyField(
+        "DiningOptions", related_name="rooms", blank=True
+    )
+    amenities = models.ManyToManyField("Amenities", related_name="rooms", blank=True)
+    atmosphere = models.ManyToManyField("Atmosphere", related_name="rooms", blank=True)
+    crowd = models.ManyToManyField("Crowd", related_name="rooms", blank=True)
+    planning = models.ManyToManyField("Planning", related_name="rooms", blank=True)
+    payments = models.ManyToManyField("Payments", related_name="rooms", blank=True)
 
     def __str__(self):
         return self.name
