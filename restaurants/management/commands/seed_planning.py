@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from rooms.models import Planning
+from restaurants.models import Planning
 
 
 class Command(BaseCommand):
@@ -22,3 +22,4 @@ class Command(BaseCommand):
         for f in planning:
             Planning.objects.create(name=f)
         self.stdout.write(self.style.SUCCESS(f"{len(planning)} planning created!"))
+

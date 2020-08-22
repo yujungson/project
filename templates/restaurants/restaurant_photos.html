@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-{{room.name}}'s Photos
+{{restaurant.name}}'s Photos
 {% endblock page_title %}
 
 {% block search-bar %}
@@ -11,25 +11,27 @@
 
 <div class="container mx-auto my-10 flex flex-col">
     <div class="my-10 w-full">
-        <a href="{% url 'rooms:add-photo' room.pk %}" class="btn-link w-1/6 block">Upload Photo</a>
+        <a href="{% url 'restaurants:add-photo' restaurant.pk %}" class="btn-link w-1/6 block">Upload Photo</a>
     </div>
 
 
-    {% for photo in room.photos.all %}
+    {% for photo in restaurant.photos.all %}
     <div class="mb-5 border p-6 gorder-gray-400 flex justify-between">
         <div class="flex items-start">
             <img src="{{photo.file.url}}" class="w-32 h-32" />
             <span class="ml-5 text-xl">{{photo.caption}}</span>
         </div>
         <div class=" flex flex-col w-1/5">
-            <a class="btn-link mb-5 bg-teal-500" href="{% url 'rooms:edit-photo' room.pk photo.pk %}">Edit</a>
-            <a class="btn-link bg-red-700" href="{% url 'rooms:delete-photo' room.pk photo.pk %}">Delete</a>
+            <a class="btn-link mb-5 bg-teal-500"
+                href="{% url 'restaurants:edit-photo' restaurant.pk photo.pk %}">Edit</a>
+            <a class="btn-link bg-red-700" href="{% url 'restaurants:delete-photo' restaurant.pk photo.pk %}">Delete</a>
         </div>
     </div>
     {% endfor %}
 
     <div class="flex justify-center mt-5">
-        <a href="{% url 'rooms:edit' room.pk %}" class="text-teal-500 font-medium text-2xl">Back to edit room</a>
+        <a href="{% url 'restaurants:edit' restaurant.pk %}" class="text-teal-500 font-medium text-2xl">Back to edit
+            restaurant</a>
     </div>
 
 </div>

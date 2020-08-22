@@ -2,15 +2,15 @@
 {% load is_booked on_favs i18n %}
 
 {% block page_title %}
-{{room.name}}
+{{restaurant.name}}
 {% endblock page_title %}
 
 {% block content %}
 
 <div class="-mt-5 container max-w-full h-75vh flex mb-20">
-    <div class="h-full w-1/2 bg-center bg-cover" style="background-image:url({{room.first_photo}})"></div>
+    <div class="h-full w-1/2 bg-center bg-cover" style="background-image:url({{restaurant.first_photo}})"></div>
     <div class="h-full w-1/2 flex flex-wrap">
-        {% for photo in room.get_next_four_photos %}
+        {% for photo in restaurant.get_next_four_photos %}
         <div style="background-image:url({{photo.file.url}})"
             class="w-1/2 h-auto bg-cover bg-center border-gray-700 border"></div>
         {% endfor %}
@@ -21,86 +21,84 @@
     <div class="w-1/2">
         <div class="flex justify-between">
             <div class="mb-5">
-                <h4 class="text-3xl font-medium mb-px">{{room.name}}</h4>
-                <span class="text-gray-700 font-light">{{room.city}}</span>
+                <h4 class="text-3xl font-medium mb-px">{{restaurant.name}}</h4>
+                <span class="text-gray-700 font-light">{{restaurant.city}}</span>
             </div>
-            <a href="{{room.host.get_absolute_url}}" class="flex flex-col items-center">
-                {% include "mixins/user_avatar.html" with user=room.host %}
-                <span class="mt-2 text-gray-500">{{room.host.first_name}}</span>
+            <a href="{{restaurant.host.get_absolute_url}}" class="flex flex-col items-center">
+                {% include "mixins/user_avatar.html" with user=restaurant.host %}
+                <span class="mt-2 text-gray-500">{{restaurant.host.first_name}}</span>
             </a>
         </div>
-        {% on_favs room as on_favs_boolean %}
+        {% on_favs restaurant as on_favs_boolean %}
         {% if on_favs_boolean %}
         <a class="block mb-10 w-2/6 text-teal-600 font-bold"
-            href="{% url 'lists:toggle-room' room.pk %}?action=remove">{% trans "Remove from Favourites" %}</a>
+            href="{% url 'lists:toggle-restaurant' restaurant.pk %}?action=remove">{% trans "즐겨찾기에서 삭제" %}</a>
         {% else %}
         <a class="block mb-10 w-2/6 text-teal-600 font-bold"
-            href="{% url 'lists:toggle-room' room.pk %}?action=add">{% trans "Save to Favourites" %}</a>
+            href="{% url 'lists:toggle-restaurant' restaurant.pk %}?action=add">{% trans "즐겨찾기에 추가" %}</a>
         {% endif %}
 
         <div class="flex border-section">
-            <span class="mr-5 font-light">{{room.room_type}}</span>
-            <span class="mr-5 font-light">{{room.beds}} bed{{room.beds|pluralize}}</span>
-            <span class="mr-5 font-light">{{room.bedrooms}} bedroom{{room.bedrooms|pluralize}}</span>
-            <span class="mr-5 font-light">{{room.baths}} bath{{room.baths|pluralize}}</span>
-            <span class="mr-5 font-light">{{room.guests}} guest{{room.guests|pluralize}}</span>
+            <span class="mr-5 font-light">{{restaurant.restaurant_type}}</span>
+            <span class="mr-5 font-light">{{restaurant.baths}} bath{{restaurant.baths|pluralize}}</span>
+            <span class="mr-5 font-light">{{restaurant.guests}} guest{{restaurant.guests|pluralize}}</span>
         </div>
         <p class="border-section">
-            {{room.description}}
+            {{restaurant.description}}
         </p>
         <div>
             <div class="grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-2 m-5 mb-10">
                 <div class="bg-white overflow-hidden hover:bg-green-100 border border-gray-200 p-1">
                     <h4 class="font-medium text-lg mb-5">Highlights</h4>
-                    {% for a in room.highlights.all %}
+                    {% for a in restaurant.highlights.all %}
                     <li class="mb-2">{{a}}</li>
                     {% endfor %}
                 </div>
                 <div class="bg-white overflow-hidden hover:bg-green-100 border border-gray-200 p-3">
                     <h4 class="font-medium text-lg mb-5">Accessibility</h4>
-                    {% for a in room.accessibilities.all %}
+                    {% for a in restaurant.accessibilities.all %}
                     <li class="mb-2">{{a}}</li>
                     {% endfor %}
                 </div>
                 <div class="bg-white overflow-hidden hover:bg-green-100 border border-gray-200 p-3">
                     <h4 class="font-medium text-lg mb-5">Offerings</h4>
-                    {% for a in room.offerings.all %}
+                    {% for a in restaurant.offerings.all %}
                     <li class="mb-2">{{a}}</li>
                     {% endfor %}
                 </div>
                 <div class="bg-white overflow-hidden hover:bg-green-100 border border-gray-200 p-3">
                     <h4 class="font-medium text-lg mb-5">Dining Options</h4>
-                    {% for a in room.dining_options.all %}
+                    {% for a in restaurant.dining_options.all %}
                     <li class="mb-2">{{a}}</li>
                     {% endfor %}
                 </div>
                 <div class="bg-white overflow-hidden hover:bg-green-100 border border-gray-200 p-3">
                     <h4 class="font-medium text-lg mb-5">Amenities</h4>
-                    {% for a in room.amenities.all %}
+                    {% for a in restaurant.amenities.all %}
                     <li class="mb-2">{{a}}</li>
                     {% endfor %}
                 </div>
                 <div class="bg-white overflow-hidden hover:bg-green-100 border border-gray-200 p-3">
                     <h4 class="font-medium text-lg mb-5">Atmosphere</h4>
-                    {% for a in room.atmosphere.all %}
+                    {% for a in restaurant.atmosphere.all %}
                     <li class="mb-2">{{a}}</li>
                     {% endfor %}
                 </div>
                 <div class="bg-white overflow-hidden hover:bg-green-100 border border-gray-200 p-3">
                     <h4 class="font-medium text-lg mb-5">Crowd</h4>
-                    {% for a in room.crowd.all %}
+                    {% for a in restaurant.crowd.all %}
                     <li class="mb-2">{{a}}</li>
                     {% endfor %}
                 </div>
                 <div class="bg-white overflow-hidden hover:bg-green-100 border border-gray-200 p-3">
                     <h4 class="font-medium text-lg mb-5">Planning</h4>
-                    {% for a in room.planning.all %}
+                    {% for a in restaurant.planning.all %}
                     <li class="mb-2">{{a}}</li>
                     {% endfor %}
                 </div>
                 <div class="bg-white overflow-hidden hover:bg-green-100 border border-gray-200 p-3">
                     <h4 class="font-medium text-lg mb-5">Payments</h4>
-                    {% for a in room.payments.all %}
+                    {% for a in restaurant.payments.all %}
                     <li class="mb-2">{{a}}</li>
                     {% endfor %}
                 </div>
@@ -111,16 +109,16 @@
             <div class="flex items-center">
                 <div>
                     <i class="fas fa-star text-teal-500"></i>
-                    <span class="font-bold text-xl">{{room.total_rating}}</span>
+                    <span class="font-bold text-xl">{{restaurant.total_rating}}</span>
                 </div>
                 <div class="h-4 w-px bg-gray-400 mx-5"></div>
                 <div>
-                    <span class="font-bold text-xl">{{room.reviews.count}}</span>
-                    <span>review{{room.reviews.count|pluralize}}</span>
+                    <span class="font-bold text-xl">{{restaurant.reviews.count}}</span>
+                    <span>review{{restaurant.reviews.count|pluralize}}</span>
                 </div>
             </div>
             <div class="mt-10">
-                {% for review in room.reviews.all  %}
+                {% for review in restaurant.reviews.all  %}
                 <div class="border-section">
                     <div class="mb-3 flex">
                         <div>
@@ -138,11 +136,11 @@
         </div>
     </div>
     <div class="w-1/3">
-        {% if room.host == user %}
-        <a href="{% url 'rooms:edit' room.pk %}" class="btn-link block">Edit Room</a>
+        {% if restaurant.host == user %}
+        <a href="{% url 'restaurants:edit' restaurant.pk %}" class="btn-link block">Edit Restaurant</a>
         {% else %}
         {% if not request.session.is_hosting %}
-        {% for calendar in room.get_calendars %}
+        {% for calendar in restaurant.get_calendars %}
         <div class="mb-20">
             <span class="text-center font-semibold text-lg block mb-8">{{calendar.get_month}} / {{calendar.year}}</span>
             <div class="cal-grid font-medium mb-4">
@@ -152,14 +150,14 @@
             </div>
             <div class="cal-grid">
                 {% for date in calendar.get_days %}
-                {% is_booked room date time as is_booked_bool %}
+                {% is_booked restaurant date time as is_booked_bool %}
                 {% if date.day != 0 %}
                 {% if date.past %}
                 <span class="cal-number bg-gray-200 text-gray-400">{{date}}</span>
                 {% elif is_booked_bool %}
                 <span class="cal-number bg-gray-200 text-gray-400 line-through">{{date}}</span>
                 {% else %}
-                <a href="{% url 'reservations:choose-time' room.pk date.year date.month date.day %}"
+                <a href="{% url 'reservations:choose-time' restaurant.pk date.year date.month date.day %}"
                     class="cal-number bg-gray-200 text-gray-700 hover:bg-teal-400 hover:text-white hover:font-medium">{{date}}</a>
                 {% endif %}
                 {% else %}

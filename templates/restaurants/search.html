@@ -11,7 +11,7 @@ Search
 <div class="-mx-3 md:flex mb-6">
     <div class="md:w-1/2 px-3 mb-6 md:mb-0 container w-auto flex-auto items-center border p-6 border-gray-400"
         style="margin-right: 10px; margin-left: 100px;">
-        <form method="get" action="{% url "rooms:search" %}">
+        <form method="get" action="{% url "restaurants:search" %}">
             {{form.as_p}}
             <button class="btn bg-red-500 text-white mt-5">Search</button>
         </form>
@@ -22,27 +22,27 @@ Search
         style="margin-right: 100px; margin-left: 10px;">
         <h3 class="mb-12 text-2xl">Results</h3>
         <div class="flex flex-wrap -mx-40 mb-10">
-            {% for room in rooms %}
+            {% for restaurant in restaurants %}
             <div class="w-1/2 mb-10 px-2">
-                <a href="{% url 'rooms:detail' room.pk %}">
+                <a href="{% url 'restaurants:detail' restaurant.pk %}">
                     <div class="w-full h-64 bg-cover bg-center rounded-lg mb-2"
-                        style="background-image: url({{room.first_photo}});">
+                        style="background-image: url({{restaurant.first_photo}});">
                     </div>
                     <div class="flex justify-between mb-2">
                         <div class="w-4/5 block truncate overflos-hidden flex">
-                            {% if room.host.superhost %}
+                            {% if restaurant.host.superhost %}
                             <span
                                 class="mr-2 uppercase font-medium text-xs border border-black text-black rounded py-px px-1">superhost</span>
                             {% endif %}
-                            <span class="text-sm text-gray-600 block truncate font-light">{{room.city}}</span>
+                            <span class="text-sm text-gray-600 block truncate font-light">{{restaurant.city}}</span>
                         </div>
                         <span class="text-sm flex items-center">
-                            <i class="fas fa-star text-red-500 text-xs mr-px"></i> {{room.total_rating}}
+                            <i class="fas fa-star text-red-500 text-xs mr-px"></i> {{restaurant.total_rating}}
                         </span>
 
                     </div>
                     <span class="text-black w-11/12 block truncate">
-                        {{room.name}}
+                        {{restaurant.name}}
                     </span>
                 </a>
             </div>

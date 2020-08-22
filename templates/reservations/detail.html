@@ -46,7 +46,7 @@ Reservation {{reservation.date}} {{reservation.time}}
             </form>
             {% else %}
             {% if reservation.status == 'pending' %}
-            <a href="{% url 'reservations:edit' reservation.pk 'cancel' %}" class="btn-link block px-5">Cancel
+            <a href="{% url 'reservations:edit' reservation.pk 'cancel' %}" class="btn-link block px-5 mb-3">Cancel
                 Reservation</a>
             {% if reservation.room.host == user  %}
             <a href="{% url 'reservations:edit' reservation.pk 'confirm' %}" class="btn-link block px-3 mb-5">Confirm

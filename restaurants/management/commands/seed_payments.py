@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from rooms.models import Payments
+from restaurants.models import Payments
 
 
 class Command(BaseCommand):
@@ -18,3 +18,4 @@ class Command(BaseCommand):
         for f in payments:
             Payments.objects.create(name=f)
         self.stdout.write(self.style.SUCCESS(f"{len(payments)} payments created!"))
+

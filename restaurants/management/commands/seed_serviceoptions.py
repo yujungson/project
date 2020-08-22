@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from rooms.models import ServiceOptions
+from restaurants.models import ServiceOptions
 
 
 class Command(BaseCommand):

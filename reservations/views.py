@@ -1,12 +1,11 @@
 import datetime
 from django.contrib.auth.decorators import login_required
-from django.http import Http404
-from django.views.generic import View
+from django.http import Http404, HttpResponseRedirect
 from django.contrib import messages
 from django.shortcuts import render, redirect, reverse
 from rooms import models as room_models
 from reviews import forms as review_forms
-from . import models
+from . import models, forms
 
 
 class CreateError(Exception):
@@ -14,14 +13,14 @@ class CreateError(Exception):
 
 
 @login_required
-def create(request, room, year, month, day, time):
+def create(request, room, year, month, day, time, numOfGuests):
     try:
         date_obj = datetime.datetime(year, month, day)
         room = room_models.Room.objects.get(pk=room)
         models.BookedDay.objects.get(date=date_obj, time=time, reservation__room=room)
-        raise CreateError()
+        raise CreateError("This is the time that has already been reserved.")
     except (room_models.Room.DoesNotExist, CreateError):
-        messages.error(request, "This is the time that has already been reserved.")
+        messages.error(request)
         return redirect(
             reverse(
                 "reservations:choose-time",
@@ -30,45 +29,57 @@ def create(request, room, year, month, day, time):
         )
     except models.BookedDay.DoesNotExist:
         reservation = models.Reservation.objects.create(
-            guest=request.user, room=room, date=date_obj, time=time
+            guest=request.user,
+            room=room,
+            date=date_obj,
+            time=time,
+            numOfGuests=numOfGuests,
         )
+        print(reservation.pk)
+        messages.success(request, "Reserved Successfully")
         return redirect(reverse("reservations:detail", kwargs={"pk": reservation.pk}))
 
 
 @login_required
 def choose_time(request, room, year, month, day):
-    lunchtime = ["11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00"]
-    dinnertime = ["17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"]
-    return render(
-        request,
-        "reservations/choose_time.html",
-        {
-            "lunchtime": lunchtime,
-            "dinnertime": dinnertime,
-            "year": year,
-            "month": month,
-            "day": day,
-            "room": room,
-        },
+    if request.method == "POST":
+        form = forms.NumberOfGuestsForm(request.POST)
+        if form.is_valid():
+            time = form.data["time"]
+            numOfGuests = form.data["numOfGuests"]
+            return HttpResponseRedirect(
+                reverse(
+                    "reservations:choose-time",
+                    args=(year, month, day, time, room, numOfGuests),
+                )
+            )
+    else:
+        form = forms.NumberOfGuestsForm()
+
+
+@login_required
+def choose_numofguests(request, room, year, month, day, time):
+    print(request.method)
+    numOfGuests = request.POST["numOfGuests"]
+    return HttpResponseRedirect(
+        reverse(
+            "reservations:choose-numofguests",
+            args=(year, month, day, time, room, numOfGuests),
+        )
     )
 
 
-class ReservationDetailView(View):
-    def get(self, *args, **kwargs):
-        room_pk = kwargs.get("pk")
-        reservation = models.Reservation.objects.get_or_none(pk=room_pk)
-        print(reservation)
-        if not reservation or (
-            reservation.guest != self.request.user
-            and reservation.room.host != self.request.user
-        ):
-            raise Http404()
-        form = review_forms.CreateReviewForm()
-        return render(
-            self.request,
-            "reservations/detail.html",
-            {"reservation": reservation, "form": form},
-        )
+def reservation_detail(request, room):
+    reservation = models.Reservation.objects.get(room=room)
+    print(reservation)
+    if not reservation or (
+        reservation.guest != request.user and reservation.room.host != request.user
+    ):
+        raise Http404()
+    form = review_forms.CreateReviewForm()
+    return render(
+        request, "reservations/detail.html", {"reservation": reservation, "form": form},
+    )
 
 
 def edit_reservation(request, pk, verb):

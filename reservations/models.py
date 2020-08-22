@@ -1,4 +1,3 @@
-import datetime
 from django.db import models
 from django.utils import timezone
 from core import models as core_models
@@ -39,6 +38,9 @@ class Reservation(core_models.TimeStampedModel):
     guest = models.ForeignKey(
         "users.User", related_name="reservations", on_delete=models.CASCADE
     )
+
+    numOfGuests = models.IntegerField(default=1)
+
     room = models.ForeignKey(
         "rooms.Room", related_name="reservations", on_delete=models.CASCADE
     )

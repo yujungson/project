@@ -4,4 +4,5 @@ from . import views
 
 app_name = "reviews"
 
-urlpatterns = [path("create/<int:room>", views.create_review, name="create")]
+urlpatterns = [path("create/<int:restaurant>", views.create_review, name="create")]
+

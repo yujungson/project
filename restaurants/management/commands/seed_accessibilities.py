@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from rooms.models import Accessibility
+from restaurants.models import Accessibility
 
 
 class Command(BaseCommand):

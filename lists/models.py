@@ -8,15 +8,16 @@ class List(core_models.TimeStampedModel):
 
     name = models.CharField(max_length=80)
     user = models.OneToOneField(
-        "users.User", related_name="list", on_delete=models.CASCADE
+        "users.User", related_name="list", on_delete=models.CASCADE, null=True
     )
-    rooms = models.ManyToManyField("rooms.Room", related_name="lists", blank=True)
+    restaurants = models.ManyToManyField(
+        "restaurants.Restaurant", related_name="lists", blank=True
+    )
 
     def __str__(self):
         return self.name
 
-    def count_rooms(self):
-        return self.rooms.count()
+    def count_restaurants(self):
+        return self.restaurants.count()
 
-    count_rooms.short_description = "Number of Rooms"
-
+    count_restaurants.short_description = "Number of Restaurants"

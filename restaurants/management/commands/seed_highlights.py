@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from rooms.models import Highlights
+from restaurants.models import Highlights
 
 
 class Command(BaseCommand):

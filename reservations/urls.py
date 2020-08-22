@@ -11,9 +11,14 @@ urlpatterns = [
     ),
     path(
         "<int:room>/<int:year>-<int:month>-<int:day>-<str:time>/",
+        views.choose_numofguests,
+        name="choose-numofguests",
+    ),
+    path(
+        "<int:room>/<int:year>-<int:month>-<int:day>-<str:time>/<int:numOfGuests>",
         views.create,
         name="create",
     ),
-    path("<int:room>", views.ReservationDetailView.as_view(), name="detail",),
-    path("<int:pk>/<str:verb>/", views.edit_reservation, name="edit"),
+    path("<int:room>/", views.reservation_detail, name="detail",),
+    path("<int:room>/<str:verb>/", views.edit_reservation, name="edit"),
 ]

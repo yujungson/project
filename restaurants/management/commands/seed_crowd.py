@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from rooms.models import Crowd
+from restaurants.models import Crowd
 
 
 class Command(BaseCommand):

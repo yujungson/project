@@ -4,7 +4,7 @@ from django.contrib.admin.utils import flatten
 from django_seed import Seed
 from lists import models as list_models
 from users import models as user_models
-from rooms import models as room_models
+from restaurants import models as restaurant_models
 
 
 class Command(BaseCommand):
@@ -23,7 +23,7 @@ class Command(BaseCommand):
         number = options.get("number")
         seeder = Seed.seeder()
         users = user_models.User.objects.all()
-        rooms = room_models.Room.objects.all()
+        restaurants = restaurant_models.Restaurant.objects.all()
         seeder.add_entity(
             list_models.List, number, {"user": lambda x: random.choice(users),},
         )
@@ -32,6 +32,6 @@ class Command(BaseCommand):
         cleaned = flatten(list(created.values()))
         for pk in cleaned:
             list_model = list_models.List.objects.get(pk=pk)
-            to_add = rooms[random.randint(0, 5) : random.randint(6, 30)]
-            list_model.rooms.add(*to_add)
+            to_add = restaurants[random.randint(0, 5) : random.randint(6, 30)]
+            list_model.restaurants.add(*to_add)
         self.stdout.write(self.style.SUCCESS(f"{number} lists created!"))

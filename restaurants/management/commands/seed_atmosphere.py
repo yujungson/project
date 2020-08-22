@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from rooms.models import Atmosphere
+from restaurants.models import Atmosphere
 
 
 class Command(BaseCommand):
@@ -28,3 +28,4 @@ class Command(BaseCommand):
         for f in atmosphere:
             Atmosphere.objects.create(name=f)
         self.stdout.write(self.style.SUCCESS(f"{len(atmosphere)} atmosphere created!"))
+

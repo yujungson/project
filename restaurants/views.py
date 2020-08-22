@@ -14,8 +14,8 @@ class HomeView(ListView):
     """ HomeView Definition """
 
     model = models.Room
-    paginate_by = 18
-    paginate_orphans = 5
+    paginate_by = 12
+    paginate_orphans = 0
     ordering = "created"
     context_object_name = "rooms"
 
@@ -33,7 +33,6 @@ class SearchView(View):
 
     def get(self, request):
         form = forms.SearchForm()
-        print(form.is_valid())
         if form.is_valid():
 
             city = form.cleaned_data.get("city")

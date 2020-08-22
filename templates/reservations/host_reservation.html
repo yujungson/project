@@ -11,29 +11,25 @@
 
 
 <div class="container mx-auto pb-10 flex flex-col items-center">
-    <h3 class="mb-12 text-2xl">Host {{user.first_name}}'s Reservations</h3>
-    <span class="flex flex-col">Reservations In Progress</span>
+    <h3 class="mb-12 text-3xl font-bold">Host {{user.first_name}}'s Reservations</h3>
+    <span class="flex flex-col text-2xl mb-2">Reservations In Progress</span>
     <div class="flex flex-wrap -mx-40 mb-10">
-        <div class="w-full mb-10 px-2">
-            {% for ro in room %}
-            {% for i in reservation %}
-            {% if ro.name == i.room.name %}
-            {% if not i.is_finished %}
+        {% for ro in room %}
+        {% for i in reservation %}
+        {% if ro.name == i.room.name %}
+        {% if not i.is_finished %}
+        <div class="w-25vh mb-10 px-2">
             <a href="{% url 'reservations:detail' i.room.pk %}">
                 <div class="w-full h-64 bg-cover bg-center rounded-lg mb-2"
-                    style="background-image: url({{ro.room.first_photo}});">
+                    style="background-image: url({{i.room.first_photo}});">
                 </div>
                 <div class="flex justify-between mb-2">
                     <div class="w-4/5 truncate overflos-hidden flex">
-                        {% if ro.room.host.superhost %}
-                        <span
-                            class="mr-2 uppercase font-medium text-xs border border-black text-black rounded py-px px-1">superhost</span>
-                        {% endif %}
-                        <span class="text-sm text-gray-600 block truncate font-light">{{ro.room.city}},
-                            {{ro.room.country.name}}</span>
+                        <span class="text-sm text-gray-600 block truncate font-light">{{i.room.city}},
+                            {{i.room.country.name}}</span>
                     </div>
                     <span class="text-sm flex items-center">
-                        <i class="fas fa-star text-red-500 text-xs mr-px"></i> {{ro.room.total_rating}}
+                        <i class="fas fa-star text-red-500 text-xs mr-px"></i> {{i.room.total_rating}}
                     </span>
 
                 </div>
@@ -46,7 +42,12 @@
                 <span class="flex flex-col">
                     Reservation Time : {{i.time}}
                 </span>
-
+                <span class="flex flex-col">
+                    Guest Name: {{i.guest.first_name}}
+                </span>
+                <span class="flex flex-col">
+                    Number of Guests: {{i.numOfGuests}}
+                </span>
                 {% endif %}
                 {% endif %}
                 {% endfor %}
@@ -57,40 +58,42 @@
     </div>
 
 
-    <span class="flex flex-col">Finished Reservations</span>
+    <span class="flex flex-col text-2xl mb-2">Finished Reservations</span>
 
     <div class="flex flex-wrap -mx-40 mb-10">
-        <div class="w-full mb-10 px-2">
+        <div class="w-25vh mb-10 px-2">
             {% for ro in room %}
             {% for i in reservation %}
             {% if ro.name == i.room.name %}
             {% if i.is_finished %}
             <a href="{% url 'reservations:detail' i.room.pk %}">
                 <div class="w-full h-64 bg-cover bg-center rounded-lg mb-2"
-                    style="background-image: url({{ro.room.first_photo}});">
+                    style="background-image: url({{i.room.first_photo}});">
                 </div>
                 <div class="flex justify-between mb-2">
                     <div class="w-4/5 truncate overflos-hidden flex">
-                        {% if ro.room.host.superhost %}
-                        <span
-                            class="mr-2 uppercase font-medium text-xs border border-black text-black rounded py-px px-1">superhost</span>
-                        {% endif %}
-                        <span class="text-sm text-gray-600 block truncate font-light">{{ro.room.city}},
-                            {{ro.room.country.name}}</span>
+                        <span class="text-sm text-gray-600 block truncate font-light">{{i.room.city}},
+                            {{i.room.country.name}}</span>
                     </div>
                     <span class="text-sm flex items-center">
-                        <i class="fas fa-star text-red-500 text-xs mr-px"></i> {{ro.room.total_rating}}
+                        <i class="fas fa-star text-red-500 text-xs mr-px"></i> {{i.room.total_rating}}
                     </span>
 
                 </div>
                 <span class="text-black w-11/12 block truncate">
-                    {{ro.room.name}}
+                    {{i.room.name}}
                 </span>
                 <span class="flex flex-col">
                     Reservation Date : {{i.date}}
                 </span>
                 <span class="flex flex-col">
                     Reservation Time : {{i.time}}
+                </span>
+                <span class="flex flex-col">
+                    Guest Name: {{i.guest.first_name}}
+                </span>
+                <span class="flex flex-col">
+                    Number of Guests: {{i.numOfGuests}}
                 </span>
 
                 {% endif %}

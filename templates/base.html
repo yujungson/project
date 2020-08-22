@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-    <title>
-        {% block page_title %}{% endblock page_title %}| Nbnb</title>
+    <title>{% block page_title %}{% endblock page_title %}| Nbnb</title>
 </head>
 
 <body class="text-gray-800 mt-24">
@@ -22,8 +21,8 @@
 
             {% block search-bar %}
 
-            <a href="{% url "rooms:search" %}">
-                <i class="fas fa-search text-2xl ml-2"> Search</i>
+            <a href="{% url "restaurants:search" %}">
+                <i class="fas fa-search text-2xl ml-2"> 검색</i>
             </a>
 
             {% endblock search-bar %}

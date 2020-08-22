@@ -13,6 +13,7 @@ class ReservationAdmin(admin.ModelAdmin):
         "date",
         "time",
         "guest",
+        "numOfGuests",
         "in_progress",
         "is_finished",
     )
