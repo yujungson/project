@@ -83,8 +83,8 @@ def reservation_detail(request, restaurant):
     )
 
 
-def edit_reservation(request, pk, verb):
-    reservation = models.Reservation.objects.get_or_none(pk=pk)
+def edit_reservation(request, restaurant, verb):
+    reservation = models.Reservation.objects.get_or_none(restaurant=restaurant)
     if not reservation or (
         reservation.guest != request.user
         and reservation.restaurant.host != request.user
@@ -97,5 +97,5 @@ def edit_reservation(request, pk, verb):
         models.BookedDay.objects.filter(reservation=reservation).delete()
     reservation.save()
     messages.success(request, "Reservation Updated")
-    return redirect(reverse("reservations:detail", kwargs={"pk": reservation.pk}))
+    return redirect(reverse("reservations:detail", kwargs={"restaurant": restaurant}))
 
