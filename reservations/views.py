@@ -20,11 +20,13 @@ def create(request, restaurant, year, month, day, time, numOfGuests):
         models.BookedDay.objects.get(
             date=date_obj, time=time, reservation__restaurant=restaurant
         )
-        raise CreateError("This is the time that has already been reserved.")
+        raise CreateError()
     except (restaurant_models.Restaurant.DoesNotExist, CreateError):
-        messages.error(request)
+        messages.error(request, "This is the time that has already been reserved.")
         return render(
-            "restaurants/restaurant_detail.html", {"restaurant": restaurant.pk},
+            request,
+            "reservations/choose_detail.html",
+            {"restaurant": restaurant.pk, "year": year, "month": month, "day": day},
         )
 
     except models.BookedDay.DoesNotExist:
