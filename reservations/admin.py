@@ -8,7 +8,7 @@ class ReservationAdmin(admin.ModelAdmin):
     """ Reservation Admin Definition """
 
     list_display = (
-        "room",
+        "restaurant",
         "status",
         "date",
         "time",

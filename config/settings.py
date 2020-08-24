@@ -45,7 +45,7 @@ THIRD_PARTY_APPS = ["django_countries", "django_seed"]
 PROJECT_APPS = [
     "core.apps.CoreConfig",
     "users.apps.UsersConfig",
-    "rooms.apps.RoomsConfig",
+    "restaurants.apps.RestaurantsConfig",
     "reviews.apps.ReviewsConfig",
     "reservations.apps.ReservationsConfig",
     "lists.apps.ListsConfig",

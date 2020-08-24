@@ -157,7 +157,7 @@
                 {% elif is_booked_bool %}
                 <span class="cal-number bg-gray-200 text-gray-400 line-through">{{date}}</span>
                 {% else %}
-                <a href="{% url 'reservations:choose-time' restaurant.pk date.year date.month date.day %}"
+                <a href="{% url 'reservations:choose-detail' restaurant.pk date.year date.month date.day %}"
                     class="cal-number bg-gray-200 text-gray-700 hover:bg-teal-400 hover:text-white hover:font-medium">{{date}}</a>
                 {% endif %}
                 {% else %}

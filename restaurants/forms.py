@@ -70,14 +70,14 @@ class CreatePhotoForm(forms.ModelForm):
 
     def save(self, pk, *args, **kwargs):
         photo = super().save(commit=False)
-        room = models.Room.objects.get(pk=pk)
-        photo.room = room
+        restaurant = models.Restaurant.objects.get(pk=pk)
+        photo.restaurant = restaurant
         photo.save()
 
 
-class CreateRoomForm(forms.ModelForm):
+class CreateRestaurantForm(forms.ModelForm):
     class Meta:
-        model = models.Room
+        model = models.Restaurant
         fields = (
             "name",
             "description",
@@ -104,5 +104,5 @@ class CreateRoomForm(forms.ModelForm):
         )
 
     def save(self, *args, **kwargs):
-        room = super().save(commit=False)
-        return room
+        restaurant = super().save(commit=False)
+        return restaurant

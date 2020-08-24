@@ -106,16 +106,18 @@ class Photo(core_models.TimeStampedModel):
     """ Photo Model Definition """
 
     caption = models.CharField(max_length=80)
-    file = models.ImageField(upload_to="room_photos")
-    room = models.ForeignKey("Room", related_name="photos", on_delete=models.CASCADE)
+    file = models.ImageField(upload_to="restaurant_photos")
+    restaurant = models.ForeignKey(
+        "Restaurant", related_name="photos", on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return self.caption
 
 
-class Room(core_models.TimeStampedModel):
+class Restaurant(core_models.TimeStampedModel):
 
-    """ Room Model Definition """
+    """ Restaurant Model Definition """
 
     name = models.CharField(max_length=140)
     description = models.TextField()
@@ -131,24 +133,39 @@ class Room(core_models.TimeStampedModel):
     check_out = models.TimeField()
     instant_book = models.BooleanField(default=False)
     host = models.ForeignKey(
-        "users.User", related_name="rooms", on_delete=models.CASCADE
+        "users.User", related_name="restaurants", on_delete=models.CASCADE
     )
     service_options = models.ForeignKey(
-        "ServiceOptions", related_name="rooms", on_delete=models.SET_NULL, null=True
+        "ServiceOptions",
+        related_name="restaurants",
+        on_delete=models.SET_NULL,
+        null=True,
     )
-    highlights = models.ManyToManyField("Highlights", related_name="rooms", blank=True)
+    highlights = models.ManyToManyField(
+        "Highlights", related_name="restaurants", blank=True
+    )
     accessibilities = models.ManyToManyField(
-        "Accessibility", related_name="rooms", blank=True
+        "Accessibility", related_name="restaurants", blank=True
     )
-    offerings = models.ManyToManyField("Offerings", related_name="rooms", blank=True)
+    offerings = models.ManyToManyField(
+        "Offerings", related_name="restaurants", blank=True
+    )
     dining_options = models.ManyToManyField(
-        "DiningOptions", related_name="rooms", blank=True
+        "DiningOptions", related_name="restaurants", blank=True
     )
-    amenities = models.ManyToManyField("Amenities", related_name="rooms", blank=True)
-    atmosphere = models.ManyToManyField("Atmosphere", related_name="rooms", blank=True)
-    crowd = models.ManyToManyField("Crowd", related_name="rooms", blank=True)
-    planning = models.ManyToManyField("Planning", related_name="rooms", blank=True)
-    payments = models.ManyToManyField("Payments", related_name="rooms", blank=True)
+    amenities = models.ManyToManyField(
+        "Amenities", related_name="restaurants", blank=True
+    )
+    atmosphere = models.ManyToManyField(
+        "Atmosphere", related_name="restaurants", blank=True
+    )
+    crowd = models.ManyToManyField("Crowd", related_name="restaurants", blank=True)
+    planning = models.ManyToManyField(
+        "Planning", related_name="restaurants", blank=True
+    )
+    payments = models.ManyToManyField(
+        "Payments", related_name="restaurants", blank=True
+    )
 
     def __str__(self):
         return self.name
@@ -158,7 +175,7 @@ class Room(core_models.TimeStampedModel):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse("rooms:detail", kwargs={"pk": self.pk})
+        return reverse("restaurants:detail", kwargs={"pk": self.pk})
 
     def total_rating(self):
         all_reviews = self.reviews.all()

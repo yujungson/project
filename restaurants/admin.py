@@ -22,7 +22,7 @@ class ItemAdmin(admin.ModelAdmin):
     list_display = ("name", "used_by")
 
     def used_by(self, obj):
-        return obj.rooms.count()
+        return obj.restaurants.count()
 
     pass
 
@@ -32,10 +32,10 @@ class PhotoInline(admin.TabularInline):
     model = models.Photo
 
 
-@admin.register(models.Room)
-class RoomAdmin(admin.ModelAdmin):
+@admin.register(models.Restaurant)
+class RestaurantAdmin(admin.ModelAdmin):
 
-    """ Room Admin Definition """
+    """ Restaurant Admin Definition """
 
     inlines = (PhotoInline,)
 
@@ -120,7 +120,7 @@ class RoomAdmin(admin.ModelAdmin):
 @admin.register(models.Photo)
 class PhotoAdmin(admin.ModelAdmin):
 
-    """ Phot Admin Definition """
+    """ Photo Admin Definition """
 
     list_display = ("__str__", "get_thumbnail")
 

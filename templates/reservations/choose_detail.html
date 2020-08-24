@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+Reservation
+{% endblock page_title %}
+
+{% block content %}
+<div class="container mx-auto pb-10 flex flex-col items-center">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset>
+            <legend class="mt-20 text-2xl">Lunch</legend>
+            11:00 <input type="radio" name="time" value="11:00" />
+            11:30 <input type="radio" name="time" value="11:30" />
+            12:00 <input type="radio" name="time" value="12:00" />
+            12:30 <input type="radio" name="time" value="12:30" />
+            13:00 <input type="radio" name="time" value="13:00" />
+            13:30 <input type="radio" name="time" value="13:30" />
+            14:00 <input type="radio" name="time" value="14:00" />
+            <legend class="mt-5 text-2xl">Dinner</legend>
+            17:00 <input type="radio" name="time" value="17:00" />
+            17:30 <input type="radio" name="time" value="17:30" />
+            18:00 <input type="radio" name="time" value="18:00" />
+            18:30 <input type="radio" name="time" value="18:30" />
+            19:00 <input type="radio" name="time" value="19:00" />
+            19:30 <input type="radio" name="time" value="19:30" />
+            20:00 <input type="radio" name="time" value="20:00" />
+        </fieldset>
+        <fieldset>
+            <legend>Number Of Guests:</legend>
+            <input type="number" name="numOfGuests">
+        </fieldset>
+        <button class="btn-link mt-10" type='submit'>Make Reservation</button>
+    </form>
+</div>
+{% endblock content %}

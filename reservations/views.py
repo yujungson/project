@@ -1,11 +1,11 @@
 import datetime
 from django.contrib.auth.decorators import login_required
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404
 from django.contrib import messages
 from django.shortcuts import render, redirect, reverse
-from rooms import models as room_models
+from restaurants import models as restaurant_models
 from reviews import forms as review_forms
-from . import models, forms
+from . import models
 
 
 class CreateError(Exception):
@@ -13,67 +13,69 @@ class CreateError(Exception):
 
 
 @login_required
-def create(request, room, year, month, day, time, numOfGuests):
+def create(request, restaurant, year, month, day, time, numOfGuests):
     try:
         date_obj = datetime.datetime(year, month, day)
-        room = room_models.Room.objects.get(pk=room)
-        models.BookedDay.objects.get(date=date_obj, time=time, reservation__room=room)
-        raise CreateError("This is the time that has already been reserved.")
-    except (room_models.Room.DoesNotExist, CreateError):
-        messages.error(request)
-        return redirect(
-            reverse(
-                "reservations:choose-time",
-                kwargs={"room": room.pk, "year": year, "month": month, "day": day},
-            )
+        restaurant = restaurant_models.Restaurant.objects.get(pk=restaurant)
+        models.BookedDay.objects.get(
+            date=date_obj, time=time, reservation__restaurant=restaurant
         )
+        raise CreateError("This is the time that has already been reserved.")
+    except (restaurant_models.Restaurant.DoesNotExist, CreateError):
+        messages.error(request)
+        return render(
+            "restaurants/restaurant_detail.html", {"restaurant": restaurant.pk},
+        )
+
     except models.BookedDay.DoesNotExist:
         reservation = models.Reservation.objects.create(
             guest=request.user,
-            room=room,
+            restaurant=restaurant,
             date=date_obj,
             time=time,
             numOfGuests=numOfGuests,
         )
         print(reservation.pk)
         messages.success(request, "Reserved Successfully")
-        return redirect(reverse("reservations:detail", kwargs={"pk": reservation.pk}))
-
-
-@login_required
-def choose_time(request, room, year, month, day):
-    if request.method == "POST":
-        form = forms.NumberOfGuestsForm(request.POST)
-        if form.is_valid():
-            time = form.data["time"]
-            numOfGuests = form.data["numOfGuests"]
-            return HttpResponseRedirect(
-                reverse(
-                    "reservations:choose-time",
-                    args=(year, month, day, time, room, numOfGuests),
-                )
-            )
-    else:
-        form = forms.NumberOfGuestsForm()
-
-
-@login_required
-def choose_numofguests(request, room, year, month, day, time):
-    print(request.method)
-    numOfGuests = request.POST["numOfGuests"]
-    return HttpResponseRedirect(
-        reverse(
-            "reservations:choose-numofguests",
-            args=(year, month, day, time, room, numOfGuests),
+        return redirect(
+            reverse("reservations:detail", kwargs={"restaurant": restaurant.pk})
         )
-    )
 
 
-def reservation_detail(request, room):
-    reservation = models.Reservation.objects.get(room=room)
+@login_required
+def choose_detail(request, restaurant, year, month, day):
+    if request.method == "POST":
+        time = request.POST.get("time")
+        numOfGuests = request.POST.get("numOfGuests")
+        print(time, numOfGuests)
+        return redirect(
+            reverse(
+                "reservations:create",
+                kwargs={
+                    "year": year,
+                    "month": month,
+                    "day": day,
+                    "time": time,
+                    "numOfGuests": numOfGuests,
+                    "restaurant": restaurant,
+                },
+            )
+        )
+
+    else:
+        return render(
+            request,
+            "reservations/choose_detail.html",
+            {"year": year, "month": month, "day": day, "restaurant": restaurant},
+        )
+
+
+def reservation_detail(request, restaurant):
+    reservation = models.Reservation.objects.get(restaurant=restaurant)
     print(reservation)
     if not reservation or (
-        reservation.guest != request.user and reservation.room.host != request.user
+        reservation.guest != request.user
+        and reservation.restaurant.host != request.user
     ):
         raise Http404()
     form = review_forms.CreateReviewForm()
@@ -85,7 +87,8 @@ def reservation_detail(request, room):
 def edit_reservation(request, pk, verb):
     reservation = models.Reservation.objects.get_or_none(pk=pk)
     if not reservation or (
-        reservation.guest != request.user and reservation.room.host != request.user
+        reservation.guest != request.user
+        and reservation.restaurant.host != request.user
     ):
         raise Http404()
     if verb == "confirm":
