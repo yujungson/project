@@ -37,7 +37,6 @@ def create(request, restaurant, year, month, day, time, numOfGuests):
             time=time,
             numOfGuests=numOfGuests,
         )
-        print(reservation.pk)
         messages.success(request, "Reserved Successfully")
         return redirect(
             reverse("reservations:detail", kwargs={"restaurant": restaurant.pk})
@@ -49,7 +48,6 @@ def choose_detail(request, restaurant, year, month, day):
     if request.method == "POST":
         time = request.POST.get("time")
         numOfGuests = request.POST.get("numOfGuests")
-        print(time, numOfGuests)
         return redirect(
             reverse(
                 "reservations:create",
@@ -74,7 +72,6 @@ def choose_detail(request, restaurant, year, month, day):
 
 def reservation_detail(request, restaurant):
     reservation = models.Reservation.objects.get(restaurant=restaurant)
-    print(reservation)
     if not reservation or (
         reservation.guest != request.user
         and reservation.restaurant.host != request.user

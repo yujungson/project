@@ -77,7 +77,6 @@ class SearchView(View):
             page = request.GET.get("page", 1)
 
             restaurants = paginator.get_page(page)
-            print(filter_args)
             return render(
                 request,
                 "restaurants/search.html",

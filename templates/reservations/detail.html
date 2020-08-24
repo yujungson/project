@@ -25,17 +25,29 @@ Reservation {{reservation.date}} {{reservation.time}}
 
         <div class="flex p-5 border-b w-full">
             <div class="flex flex-col items-center">
+                {% if request.session.is_hosting %}
+                {% include "mixins/user_avatar.html" with user=reservation.guest %}
+                <span class="mt-2 text-gray-500">{{reservation.guest.first_name}}</span>
+                {% else %}
                 {% include "mixins/user_avatar.html" with user=reservation.restaurant.host %}
                 <span class="mt-2 text-gray-500">{{reservation.restaurant.host.first_name}}</span>
+                {% endif %}
+
+
             </div>
             <div class="ml-5 flex flex-col">
-                <span class="font-medium mb-px">Contact your Airbnb Host</span>
+                {% if request.session.is_hosting %}
+                <span class="font-medium mb-px">Contact your Guest</span>
+                {% else %}
+                <span class="font-medium mb-px">Contact your Host</span>
+                {% endif %}
                 <a href="{% url 'conversations:go' reservation.restaurant.host.pk reservation.guest.pk %}"
                     class="font-medium text-teal-500">Send a Message</a>
             </div>
         </div>
 
         <div class="py-10 px-5">
+            {% if not request.session.is_hosting %}
             {% if reservation.status != 'canceled' %}
             {% if reservation.status == 'confirmed' and reservation.is_finished %}
             <span class="font-medium text-2xl text-center w-full block mb-5">Write your review</span>
@@ -51,6 +63,7 @@ Reservation {{reservation.date}} {{reservation.time}}
             {% if reservation.restaurant.host == user  %}
             <a href="{% url 'reservations:edit' reservation.pk 'confirm' %}" class="btn-link block px-3 mb-5">Confirm
                 Reservation</a>
+            {% endif %}
             {% endif %}
             {% endif %}
             {% endif %}
