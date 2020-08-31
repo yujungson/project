@@ -5,12 +5,7 @@
         </div>
         <div class="flex justify-between mb-2">
             <div class="w-4/5 block truncate overflos-hidden flex">
-                {% if restaurant.host.superhost %}
-                <span
-                    class="mr-2 uppercase font-medium text-xs border border-black text-black rounded py-px px-1">superhost</span>
-                {% endif %}
-                <span class="text-sm text-gray-600 block truncate font-light">{{restaurant.city}},
-                    {{restaurant.country.name}}</span>
+                <span class="text-sm text-gray-600 block truncate font-light">{{restaurant.city}}</span>
             </div>
             <span class="text-sm flex items-center">
                 <i class="fas fa-star text-red-500 text-xs mr-px"></i> {{restaurant.total_rating}}

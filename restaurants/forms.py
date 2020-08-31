@@ -5,12 +5,8 @@ from . import models
 class SearchForm(forms.Form):
 
     city = forms.CharField(required=False)
-    price = forms.IntegerField(required=False)
+    name = forms.CharField(initial="None", required=False)
     guests = forms.IntegerField(required=False)
-    instant_book = forms.ChoiceField(
-        choices=[("True", "POSSIBLE"), ("False", "IMPOSIBLE")],
-        widget=forms.RadioSelect,
-    )
     service_options = forms.ModelMultipleChoiceField(
         required=False,
         queryset=models.ServiceOptions.objects.all(),
@@ -82,15 +78,8 @@ class CreateRestaurantForm(forms.ModelForm):
             "name",
             "description",
             "city",
-            "price",
             "address",
             "guests",
-            "beds",
-            "bedrooms",
-            "baths",
-            "check_in",
-            "check_out",
-            "instant_book",
             "service_options",
             "highlights",
             "accessibilities",
@@ -101,6 +90,16 @@ class CreateRestaurantForm(forms.ModelForm):
             "crowd",
             "planning",
             "payments",
+            "menu_1",
+            "price_1",
+            "menu_2",
+            "price_2",
+            "menu_3",
+            "price_3",
+            "menu_4",
+            "price_4",
+            "menu_5",
+            "price_5",
         )
 
     def save(self, *args, **kwargs):

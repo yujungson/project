@@ -35,7 +35,7 @@ class SignUpForm(forms.ModelForm):
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={"placeholder": "Password"})
     )
-    password1 = forms.CharField(
+    confirm_password = forms.CharField(
         widget=forms.PasswordInput(attrs={"placeholder": "Confirm Password"})
     )
 
@@ -49,10 +49,10 @@ class SignUpForm(forms.ModelForm):
         except models.User.DoesNotExist:
             return email
 
-    def clean_password1(self):
+    def clean_confirm_password(self):
         password = self.cleaned_data.get("password")
-        password1 = self.cleaned_data.get("password1")
-        if password != password1:
+        confirm_password = self.cleaned_data.get("confirm_password")
+        if password != confirm_password:
             raise forms.ValidationError("Password confirmation does not match")
         else:
             return password

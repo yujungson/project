@@ -16,7 +16,6 @@ class Command(BaseCommand):
             "저녁식사 예약을 권장함",
             "예약을 권장함",
             "일반적으로 대기 시간이 있음",
-            "트랜스젠더 안전 구역",
             "LGBTQ 환영",
         ]
         for f in planning:

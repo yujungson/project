@@ -6,101 +6,87 @@
 
 {% block content %}
 
+<div class="md:w-full px-6 container mx-auto pb-10 flex flex-col items-start border p-6 border-white">
 
-
-
-
-<div class="container mx-auto pb-10 flex flex-col items-center">
-    <h3 class="mb-12 text-3xl font-bold">Host {{user.first_name}}'s Reservations</h3>
-    <span class="flex flex-col text-2xl mb-2">Reservations In Progress</span>
-    <div class="flex flex-wrap -mx-40 mb-10">
-        {% for ro in restaurant %}
-        {% for i in reservation %}
-        {% if ro.name == i.restaurant.name %}
-        {% if not i.is_finished %}
-        <div class="w-25vh mb-10 px-2">
-            <a href="{% url 'reservations:detail' i.restaurant.pk %}">
-                <div class="w-full h-64 bg-cover bg-center rounded-lg mb-2"
-                    style="background-image: url({{i.restaurant.first_photo}});">
-                </div>
-                <div class="flex justify-between mb-2">
-                    <div class="w-4/5 truncate overflos-hidden flex">
-                        <span class="text-sm text-gray-600 block truncate font-light">{{i.restaurant.city}},
-                            {{i.restaurant.country.name}}</span>
+    <h3 class="mb-5 ml-5 text-3xl font-bold">Host {{user.first_name}}'s Reservations</h3>
+    <div class="md:w-full px-6 container mx-auto pb-10 flex flex-col items-start border p-6 border-gray-400">
+        <h3 class="text-2xl mb-5 ml-2">Reservations In Progress</h3>
+        <div class="grid gap-2 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 mt-1">
+            {% for ro in restaurant %}
+            {% for i in reservation %}
+            {% if ro.name == i.restaurant.name %}
+            {% if not i.is_finished %}
+            <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
+                <a href="{% url 'reservations:detail' i.pk %}">
+                    <div class="flex items-end justify-end h-56 w-full bg-cover"
+                        style="background-image: url({{i.restaurant.first_photo}});">
                     </div>
-                    <span class="text-sm flex items-center">
-                        <i class="fas fa-star text-red-500 text-xs mr-px"></i> {{i.restaurant.total_rating}}
-                    </span>
+                    <div>
+                        <span class="mx-2 my-1 flex flex-col">
+                            {{i.restaurant.name}}
+                        </span>
+                        <span class="mx-2 my-1 flex flex-col">
+                            Reservation Date : {{i.date}}
+                        </span>
+                        <span class="mx-2 my-1 flex flex-col">
+                            Reservation Time : {{i.time}}
+                        </span>
+                        <span class="mx-2 my-1 flex flex-col">
+                            Guest Name: {{i.guest.first_name}}
+                        </span>
+                        <span class="mx-2 my-1 flex flex-col">
+                            Number of Guests: {{i.numOfGuests}}
+                        </span>
+                    </div>
 
-                </div>
-                <span class="text-black w-11/12 block truncate">
-                    {{i.restaurant.name}}
-                </span>
-                <span class="flex flex-col">
-                    Reservation Date : {{i.date}}
-                </span>
-                <span class="flex flex-col">
-                    Reservation Time : {{i.time}}
-                </span>
-                <span class="flex flex-col">
-                    Guest Name: {{i.guest.first_name}}
-                </span>
-                <span class="flex flex-col">
-                    Number of Guests: {{i.numOfGuests}}
-                </span>
-                {% endif %}
-                {% endif %}
-                {% endfor %}
-                {% endfor %}
-            </a>
 
+                </a>
+
+            </div>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
         </div>
     </div>
 
-
-    <span class="flex flex-col text-2xl mb-2">Finished Reservations</span>
-
-    <div class="flex flex-wrap -mx-40 mb-10">
-        <div class="w-25vh mb-10 px-2">
+    <div class="md:w-full px-6 container mx-auto pb-10 flex flex-col items-start border p-6 border-gray-400">
+        <h3 class="text-2xl mb-5 ml-2">Finished Reservations</h3>
+        <div class="grid gap-2 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 mt-1">
             {% for ro in restaurant %}
             {% for i in reservation %}
             {% if ro.name == i.restaurant.name %}
             {% if i.is_finished %}
-            <a href="{% url 'reservations:detail' i.restaurant.pk %}">
-                <div class="w-full h-64 bg-cover bg-center rounded-lg mb-2"
-                    style="background-image: url({{i.restaurant.first_photo}});">
-                </div>
-                <div class="flex justify-between mb-2">
-                    <div class="w-4/5 truncate overflos-hidden flex">
-                        <span class="text-sm text-gray-600 block truncate font-light">{{i.restaurant.city}},
-                            {{i.restaurant.country.name}}</span>
+            <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
+                <a href="{% url 'reservations:detail' i.pk %}">
+                    <div class="flex items-end justify-end h-56 w-full bg-cover"
+                        style="background-image: url({{i.restaurant.first_photo}});">
                     </div>
-                    <span class="text-sm flex items-center">
-                        <i class="fas fa-star text-red-500 text-xs mr-px"></i> {{i.restaurant.total_rating}}
-                    </span>
+                    <div>
+                        <span class="mx-2 my-1 flex flex-col">
+                            {{i.restaurant.name}}
+                        </span>
+                        <span class="mx-2 my-1 flex flex-col">
+                            Reservation Date : {{i.date}}
+                        </span>
+                        <span class="mx-2 my-1 flex flex-col">
+                            Reservation Time : {{i.time}}
+                        </span>
+                        <span class="mx-2 my-1 flex flex-col">
+                            Guest Name: {{i.guest.first_name}}
+                        </span>
+                        <span class="mx-2 my-1 flex flex-col">
+                            Number of Guests: {{i.numOfGuests}}
+                        </span>
+                    </div>
 
-                </div>
-                <span class="text-black w-11/12 block truncate">
-                    {{i.restaurant.name}}
-                </span>
-                <span class="flex flex-col">
-                    Reservation Date : {{i.date}}
-                </span>
-                <span class="flex flex-col">
-                    Reservation Time : {{i.time}}
-                </span>
-                <span class="flex flex-col">
-                    Guest Name: {{i.guest.first_name}}
-                </span>
-                <span class="flex flex-col">
-                    Number of Guests: {{i.numOfGuests}}
-                </span>
 
-                {% endif %}
-                {% endif %}
-                {% endfor %}
-                {% endfor %}
-            </a>
+                </a>
+            </div>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
         </div>
     </div>
 </div>

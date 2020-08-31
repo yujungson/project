@@ -2,58 +2,55 @@ import random
 from django.core.management.base import BaseCommand
 from django.contrib.admin.utils import flatten
 from django_seed import Seed
-from restaurants import models as restaurant_models
+from restaurants import models as restaurants_models
 from users import models as user_models
 
 
 class Command(BaseCommand):
 
-    help = "This command creates restaurants"
+    help = "This command creates rooms"
 
     def add_arguments(self, parser):
         parser.add_argument(
-            "--number",
-            default=50,
-            type=int,
-            help="How many restaurants you want to create",
+            "--number", default=1, type=int, help="How many rooms you want to create"
         )
 
     def handle(self, *args, **options):
         number = options.get("number")
         seeder = Seed.seeder()
         all_users = user_models.User.objects.all()
-        service_options = restaurant_models.ServiceOptions.objects.all()
+        service_options = restaurants_models.ServiceOptions.objects.all()
         seeder.add_entity(
-            restaurant_models.Restaurant,
+            restaurants_models.Restaurant,
             number,
             {
-                "name": lambda x: seeder.faker.address(),
+                "name": "경양카츠",
+                "city": "서울특별시",
+                "address": "서울 마포구 동교로 238-1",
                 "host": lambda x: random.choice(all_users),
                 "service_options": lambda x: random.choice(service_options),
-                "guests": lambda x: random.randint(1, 20),
-                "price": lambda x: random.randint(1, 300),
-                "baths": lambda x: random.randint(1, 5),
+                "guests": lambda x: random.randint(1, 3),
             },
         )
         created_photos = seeder.execute()
         created_clean = flatten(list(created_photos.values()))
-        highlights = restaurant_models.Highlights.objects.all()
-        accessibilities = restaurant_models.Accessibility.objects.all()
-        offerings = restaurant_models.Offerings.objects.all()
-        dining_options = restaurant_models.DiningOptions.objects.all()
-        amenities = restaurant_models.Amenities.objects.all()
-        atmosphere = restaurant_models.Atmosphere.objects.all()
-        crowd = restaurant_models.Crowd.objects.all()
-        planning = restaurant_models.Planning.objects.all()
-        payments = restaurant_models.Payments.objects.all()
+        highlights = restaurants_models.Highlights.objects.all()
+        accessibilities = restaurants_models.Accessibility.objects.all()
+        offerings = restaurants_models.Offerings.objects.all()
+        dining_options = restaurants_models.DiningOptions.objects.all()
+        amenities = restaurants_models.Amenities.objects.all()
+        atmosphere = restaurants_models.Atmosphere.objects.all()
+        crowd = restaurants_models.Crowd.objects.all()
+        planning = restaurants_models.Planning.objects.all()
+        payments = restaurants_models.Payments.objects.all()
 
         for pk in created_clean:
-            restaurant = restaurant_models.Restaurant.objects.get(pk=pk)
-            for i in range(3, random.randint(10, 20)):
-                restaurant_models.Photo.objects.create(
+            restaurant = restaurants_models.Restaurant.objects.get(pk=pk)
+            for i in range(1, 6):
+                restaurants_models.Photo.objects.create(
                     caption=seeder.faker.sentence(),
                     restaurant=restaurant,
-                    file=f"restaurant_photos/{random.randint(1, 31)}.webp",
+                    file=f"restaurant_photos/gyeongYang_{i}.jpg",
                 )
             for a in highlights:
                 magic_number = random.randint(1, 20)
@@ -93,4 +90,4 @@ class Command(BaseCommand):
                 if magic_number % 2 == 0:
                     restaurant.payments.add(r)
 
-        self.stdout.write(self.style.SUCCESS(f"{number} restaurants created!"))
+        self.stdout.write(self.style.SUCCESS(f"{number} rooms created!"))

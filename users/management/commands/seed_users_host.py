@@ -5,16 +5,18 @@ from users.models import User
 
 class Command(BaseCommand):
 
-    help = "This command creates many users"
+    help = "This command creates amenities"
 
     def add_arguments(self, parser):
         parser.add_argument(
-            "--number", default=2, type=int, help="How many users do you want to create"
+            "--number", default=5, type=int, help="How many users you want to create"
         )
 
     def handle(self, *args, **options):
-        number = options.get("number", 1)
+        number = options.get("number")
         seeder = Seed.seeder()
-        seeder.add_entity(User, number, {"is_staff": False, "is_superuser": False})
+        seeder.add_entity(
+            User, number, {"is_staff": False, "is_superuser": False, "superhost": True}
+        )
         seeder.execute()
         self.stdout.write(self.style.SUCCESS(f"{number} users created!"))

@@ -46,16 +46,30 @@ class RestaurantAdmin(admin.ModelAdmin):
                 "fields": (
                     "name",
                     "description",
-                    "country",
                     "city",
                     "address",
-                    "price",
                     "service_options",
+                    "guests",
                 )
             },
         ),
-        ("Times", {"fields": ("check_in", "check_out", "instant_book")}),
-        ("Spaces", {"fields": ("guests", "beds", "bedrooms", "baths")}),
+        (
+            "Menues",
+            {
+                "fields": (
+                    "menu_1",
+                    "price_1",
+                    "menu_2",
+                    "price_2",
+                    "menu_3",
+                    "price_3",
+                    "menu_4",
+                    "price_4",
+                    "menu_5",
+                    "price_5",
+                )
+            },
+        ),
         (
             "More About the Space",
             {
@@ -78,22 +92,13 @@ class RestaurantAdmin(admin.ModelAdmin):
     list_display = (
         "name",
         "city",
-        "price",
         "guests",
-        "beds",
-        "bedrooms",
-        "baths",
-        "check_in",
-        "check_out",
-        "instant_book",
         "count_highlights",
         "count_photos",
         "total_rating",
     )
 
     list_filter = (
-        "instant_book",
-        "host__superhost",
         "service_options",
         "highlights",
         "accessibilities",

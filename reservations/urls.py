@@ -14,6 +14,6 @@ urlpatterns = [
         views.create,
         name="create",
     ),
-    path("<int:restaurant>/", views.reservation_detail, name="detail",),
-    path("<int:restaurant>/<str:verb>/", views.edit_reservation, name="edit"),
+    path("<int:pk>/", views.reservation_detail, name="detail",),
+    path("<int:pk>/<str:verb>/", views.edit_reservation, name="edit"),
 ]
