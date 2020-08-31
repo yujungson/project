@@ -22,9 +22,13 @@
                         style="background-image: url({{i.restaurant.first_photo}});">
                     </div>
                     <div>
-                        <span class="mx-2 my-1 flex flex-col">
+                        <span class="mx-2 my-5">
                             {{i.restaurant.name}}
                         </span>
+                        <span
+                            class="ml-10 text-right {% if i.status == 'pending' %} text-yellow-500 {% elif i.status == 'canceled' %} text-red-600 {% else %} text-teal-600 {% endif %}">{{i.get_status_display}}</span>
+                    </div>
+                    <div>
                         <span class="mx-2 my-1 flex flex-col">
                             Reservation Date : {{i.date}}
                         </span>
@@ -38,6 +42,7 @@
                             Number of Guests: {{i.numOfGuests}}
                         </span>
                     </div>
+
 
 
                 </a>
@@ -63,9 +68,13 @@
                         style="background-image: url({{i.restaurant.first_photo}});">
                     </div>
                     <div>
-                        <span class="mx-2 my-1 flex flex-col">
+                        <span class="mx-2 my-5">
                             {{i.restaurant.name}}
                         </span>
+                        <span
+                            class="ml-10 text-right {% if i.status == 'pending' %} text-yellow-500 {% elif i.status == 'canceled' %} text-red-600 {% else %} text-teal-600 {% endif %}">{{i.get_status_display}}</span>
+                    </div>
+                    <div>
                         <span class="mx-2 my-1 flex flex-col">
                             Reservation Date : {{i.date}}
                         </span>
@@ -79,6 +88,7 @@
                             Number of Guests: {{i.numOfGuests}}
                         </span>
                     </div>
+
 
 
                 </a>
