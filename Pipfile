@@ -5,7 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 flake8 = "*"
-black = "*"
+black = "==19.3b0"
 awsebcli = "*"
 
 [packages]
@@ -17,6 +17,7 @@ django-dotenv = "*"
 django-mailgun = "*"
 requests = "*"
 pipenv-to-requirements = "*"
+black = "==20.8b1"
 
 [requires]
 python_version = "3.7"
