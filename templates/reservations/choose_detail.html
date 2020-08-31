@@ -5,29 +5,75 @@ Reservation
 {% endblock page_title %}
 
 {% block content %}
-<div class="container mx-auto pb-10 flex flex-col items-center">
+
+
+<div class="md:w-full items-center px-6 container mx-auto pb-10 flex flex-col items-start border p-6 border-white">
     <form method="POST">
         {% csrf_token %}
+        <div class="w-full border border-gray-700 rounded-lg mb-2">
+            <span class="p-3 text-center font-semibold text-lg block">Lunch</span>
+            <div class="grid md:grid-cols-7 sm:grid-cols-7 lg:grid-cols-7 mb-3">
+                <div class=" text-center font-medium text-lg bg-white overflow-hidden border border-gray-200 p-1">
+                    11:00 <input type="radio" name="time" value="11:00" />
+                </div>
+                <div class="text-center font-medium text-lg bg-white overflow-hidden border border-gray-200 p-1">
+                    11:30 <input type="radio" name="time" value="11:30" />
+                </div>
+                <div class="text-center font-medium text-lg bg-white overflow-hidden border border-gray-200 p-1">
+                    12:00 <input type="radio" name="time" value="12:00" />
+                </div>
+                <div class="text-center font-medium text-lg bg-white overflow-hidden border border-gray-200 p-1">
+                    12:30 <input type="radio" name="time" value="12:30" />
+                </div>
+                <div class="text-center font-medium text-lg bg-white overflow-hidden border border-gray-200 p-1">
+                    13:00 <input type="radio" name="time" value="13:00" />
+                </div>
+                <div class="text-center font-medium text-lg bg-white overflow-hidden border border-gray-200 p-1">
+                    13:30 <input type="radio" name="time" value="13:30" />
+                </div>
+                <div class="text-center font-medium text-lg bg-white overflow-hidden border border-gray-200 p-1">
+                    14:00 <input type="radio" name="time" value="14:00" />
+                </div>
+                <div class="text-center font-medium text-lg bg-gray-100 overflow-hidden border border-gray-200 p-1">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="w-full border border-gray-700 rounded-lg">
+            <span class="p-3 text-center font-semibold text-lg block">Dinner</span>
+            <div class="grid md:grid-cols-7 sm:grid-cols-7 lg:grid-cols-7 mb-3">
+                <div class=" text-center font-medium text-lg bg-white overflow-hidden border border-gray-200 p-1">
+                    17:00 <input type="radio" name="time" value="17:00" />
+                </div>
+                <div class="text-center font-medium text-lg bg-white overflow-hidden border border-gray-200 p-1">
+                    17:30 <input type="radio" name="time" value="17:30" />
+                </div>
+                <div class="text-center font-medium text-lg bg-white overflow-hidden border border-gray-200 p-1">
+                    18:00 <input type="radio" name="time" value="18:00" />
+                </div>
+                <div class="text-center font-medium text-lg bg-white overflow-hidden border border-gray-200 p-1">
+                    18:30 <input type="radio" name="time" value="18:30" />
+                </div>
+                <div class="text-center font-medium text-lg bg-white overflow-hidden border border-gray-200 p-1">
+                    19:00 <input type="radio" name="time" value="19:00" />
+                </div>
+                <div class="text-center font-medium text-lg bg-white overflow-hidden border border-gray-200 p-1">
+                    19:30 <input type="radio" name="time" value="19:30" />
+                </div>
+                <div class="text-center font-medium text-lg bg-white overflow-hidden border border-gray-200 p-1">
+                    20:00 <input type="radio" name="time" value="20:00" />
+                </div>
+                <div class="text-center font-medium text-lg bg-gray-100 overflow-hidden border border-gray-200 p-1">
+
+                </div>
+            </div>
+        </div>
+
+
+
         <fieldset>
-            <legend class="mt-20 text-2xl">Lunch</legend>
-            11:00 <input type="radio" name="time" value="11:00" />
-            11:30 <input type="radio" name="time" value="11:30" />
-            12:00 <input type="radio" name="time" value="12:00" />
-            12:30 <input type="radio" name="time" value="12:30" />
-            13:00 <input type="radio" name="time" value="13:00" />
-            13:30 <input type="radio" name="time" value="13:30" />
-            14:00 <input type="radio" name="time" value="14:00" />
-            <legend class="mt-5 text-2xl">Dinner</legend>
-            17:00 <input type="radio" name="time" value="17:00" />
-            17:30 <input type="radio" name="time" value="17:30" />
-            18:00 <input type="radio" name="time" value="18:00" />
-            18:30 <input type="radio" name="time" value="18:30" />
-            19:00 <input type="radio" name="time" value="19:00" />
-            19:30 <input type="radio" name="time" value="19:30" />
-            20:00 <input type="radio" name="time" value="20:00" />
-        </fieldset>
-        <fieldset>
-            <legend>Number Of Guests:</legend>
+            <span class="p-3 text-center font-semibold text-lg block">Number Of Guests</span>
             <input type="number" name="numOfGuests">
         </fieldset>
         <button class="btn-link mt-10" type='submit'>Make Reservation</button>
