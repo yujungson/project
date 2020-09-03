@@ -24,23 +24,19 @@ class Command(BaseCommand):
             restaurants_models.Restaurant,
             number,
             {
-                "name": "단디",
-                "city": "서울특별시",
-                "address": "서울 송파구 백제고분로 45길 7",
-                "description": "숯불에 구워낸 중독적인 맛과 식감의 원조 한우 대창 덮밥",
+                "name": "광천식당",
+                "city": "대전 중구",
+                "address": "대전 중구 대종로505번길 29",
                 "host": lambda x: random.choice(all_users),
                 "service_options": lambda x: random.choice(service_options),
-                "guests": lambda x: random.randint(4, 8),
-                "menu_1": "호르몬동",
-                "price_1": 10500,
-                "menu_2": "특호르몬동",
-                "price_2": 13500,
-                "menu_3": "단디동",
-                "price_3": 10000,
-                "menu_4": "단디 다마고",
-                "price_4": 5000,
-                "menu_5": "나마비루 310ml (생맥주)",
-                "price_5": 2000,
+                "guests": random.randint(1, 3),
+                "description": "두부두루치기와 칼국수가 유명한 곳",
+                "menu_1": "두부두루치기(2인분)",
+                "price_1": "13000",
+                "menu_2": "칼국수",
+                "price_2": "5000",
+                "menu_3": "오징어두루치기(2인)",
+                "price_3": "20000",
             },
         )
         created_photos = seeder.execute()
@@ -57,11 +53,11 @@ class Command(BaseCommand):
 
         for pk in created_clean:
             restaurant = restaurants_models.Restaurant.objects.get(pk=pk)
-            for i in range(1, 4):
+            for i in range(1, 6):
                 restaurants_models.Photo.objects.create(
                     caption=seeder.faker.sentence(),
                     restaurant=restaurant,
-                    file=f"restaurant_photos/dandi_{i}.jpg",
+                    file=f"restaurant_photos/gwang_{i}.jpg",
                 )
             for a in highlights:
                 magic_number = random.randint(1, 20)

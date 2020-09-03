@@ -51,14 +51,16 @@ class SearchView(View):
                 crowds = form.cleaned_data.get("crowd")
                 plannings = form.cleaned_data.get("planning")
                 payments = form.cleaned_data.get("payments")
+                print(city)
+                print(name)
 
                 filter_args = {}
 
                 if city != "Anywhere":
-                    filter_args["city__startswith"] = city
+                    filter_args["city__contains"] = city
 
                 if name != "None":
-                    filter_args["name__startswith"] = name
+                    filter_args["name__contains"] = name
 
                 if guests is not None:
                     filter_args["guests__lte"] = guests

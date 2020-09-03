@@ -27,9 +27,20 @@ class Command(BaseCommand):
                 "name": lambda x: "농장사람들-후라이팬에 구워도 맛있는 집",
                 "city": "서울특별시",
                 "address": "서울 영등포구 여의대방로 115",
+                "description": "정육점 식당에서 즐길 수 있는 신선하고 저렴한 고기. 진짜 맛있는 고기는 후라이팬에 구워도 맛있다!!",
                 "host": lambda x: random.choice(all_users),
                 "service_options": lambda x: random.choice(service_options),
                 "guests": lambda x: random.randint(1, 3),
+                "menu_1": lambda x: "국내산 1등급 삼겹살",
+                "price_1": lambda x: 6800,
+                "menu_2": lambda x: "꽃등심 150g",
+                "price_2": lambda x: 19500,
+                "menu_3": lambda x: "육회",
+                "price_3": lambda x: 20000,
+                "menu_4": lambda x: "돼지 왕 갈비",
+                "price_4": lambda x: 7000,
+                "menu_5": lambda x: "왕갈비탕",
+                "price_5": lambda x: 10000,
             },
         )
         created_photos = seeder.execute()
@@ -46,7 +57,7 @@ class Command(BaseCommand):
 
         for pk in created_clean:
             restaurant = restaurants_models.Restaurant.objects.get(pk=pk)
-            for i in range(1, 3):
+            for i in range(1, 6):
                 restaurants_models.Photo.objects.create(
                     caption=seeder.faker.sentence(),
                     restaurant=restaurant,

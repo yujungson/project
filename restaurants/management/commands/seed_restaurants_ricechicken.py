@@ -27,9 +27,20 @@ class Command(BaseCommand):
                 "name": lambda x: "김종용 누룽지통닭",
                 "city": "서울특별시",
                 "address": "서울 영등포구 여의대방로 131 (신길동)",
+                "description": "김종용 누룽지 통닭의 본점. 보라매역 출구로 부터 도보 1분거리. 맵찔이들에게는 누룽지 통닭, 매운거 마니아들은 누룽지 치즈불닭!!!",
                 "host": lambda x: random.choice(all_users),
                 "service_options": lambda x: random.choice(service_options),
                 "guests": lambda x: random.randint(1, 3),
+                "menu_1": lambda x: "누룽지통닭",
+                "price_1": lambda x: 17000,
+                "menu_2": lambda x: "누룽지파닭",
+                "price_2": lambda x: 19000,
+                "menu_3": lambda x: "누룽지양념통닭",
+                "price_3": lambda x: 19000,
+                "menu_4": lambda x: "누룽지모듬",
+                "price_4": lambda x: 24000,
+                "menu_5": lambda x: "누룽지 치즈불닭",
+                "price_5": lambda x: 22000,
             },
         )
         created_photos = seeder.execute()
@@ -46,7 +57,7 @@ class Command(BaseCommand):
 
         for pk in created_clean:
             restaurant = restaurants_models.Restaurant.objects.get(pk=pk)
-            for i in range(1, 4):
+            for i in range(1, 6):
                 restaurants_models.Photo.objects.create(
                     caption=seeder.faker.sentence(),
                     restaurant=restaurant,

@@ -25,11 +25,22 @@ class Command(BaseCommand):
             number,
             {
                 "name": "2리식당",
-                "city": "고양시",
+                "city": "고양시 일산동구",
                 "address": "경기도 고양시 일산동구 일산로372번길 59 1층",
                 "host": lambda x: random.choice(all_users),
                 "service_options": lambda x: random.choice(service_options),
                 "guests": lambda x: random.randint(1, 3),
+                "description": "살짝 비싸지만 맛있는 식사를 할 수 있는 곳",
+                "menu_1": "사케동",
+                "price_1": "12800",
+                "menu_2": "아보카도 간장연어덮밥",
+                "price_2": "14800",
+                "menu_3": "명란 파스타",
+                "price_3": "17800",
+                "menu_4": "가츠동",
+                "price_4": "8500",
+                "menu_5": "치킨 가라아게",
+                "price_5": "7800",
             },
         )
         created_photos = seeder.execute()

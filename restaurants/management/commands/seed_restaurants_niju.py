@@ -24,23 +24,19 @@ class Command(BaseCommand):
             restaurants_models.Restaurant,
             number,
             {
-                "name": lambda x: "라이스 앤 파스타",
-                "city": "서울특별시",
-                "address": "서울 동작구 보라매로5가길 16 보라매아카데미타워 2층 202-1",
-                "description": "아카데미 타워 2층 식당가에 위치한 라이스와 파스타를 파는 곳. 맛대맛, 생생정보통에 출연했던 맛집! 점심 스페셜 세트는 가성비 최고!",
+                "name": "니주마루",
+                "city": "서울 송파구",
+                "address": "서울 송파구 백제고분로 41길 21 1층",
                 "host": lambda x: random.choice(all_users),
                 "service_options": lambda x: random.choice(service_options),
-                "guests": lambda x: random.randint(1, 3),
-                "menu_1": lambda x: "모듬철판볶음밥",
-                "price_1": lambda x: 8900,
-                "menu_2": lambda x: "리코타치즈 샐러드",
-                "price_2": lambda x: 15000,
-                "menu_3": lambda x: "피자류",
-                "price_3": lambda x: 11500,
-                "menu_4": lambda x: "봉골레 파스타",
-                "price_4": lambda x: 15000,
-                "menu_5": lambda x: "에그 인 헬",
-                "price_5": lambda x: 16000,
+                "guests": random.randint(1, 3),
+                "description": "일본 본토에서 전수받은 비법으로 만든 야끼소바가 맛있는 집",
+                "menu_1": "야끼소바소스",
+                "price_1": "9000",
+                "menu_2": "야끼소바시오",
+                "price_2": "9000",
+                "menu_3": "토핑 오징어새우",
+                "price_3": "1500",
             },
         )
         created_photos = seeder.execute()
@@ -61,7 +57,7 @@ class Command(BaseCommand):
                 restaurants_models.Photo.objects.create(
                     caption=seeder.faker.sentence(),
                     restaurant=restaurant,
-                    file=f"restaurant_photos/ricepasta_{i}.jpg",
+                    file=f"restaurant_photos/niju_{i}.jpg",
                 )
             for a in highlights:
                 magic_number = random.randint(1, 20)

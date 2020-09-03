@@ -27,9 +27,20 @@ class Command(BaseCommand):
                 "name": lambda x: "표선칼국수",
                 "city": "제주도",
                 "address": "제주 서귀포시 표선면 민속해안로 578-3",
+                "description": "해비치 리조트와 호텔의 직원들이 강력 추천한 맛집. 해장, 보양 모두 갖춘 맛집. 아이들에게 1위 메뉴는 흑돼지 돈까스!! 어른들에게 1위 메뉴는 보말칼국수!!",
                 "host": lambda x: random.choice(all_users),
                 "service_options": lambda x: random.choice(service_options),
                 "guests": lambda x: random.randint(1, 3),
+                "menu_1": lambda x: "보말칼국수",
+                "price_1": lambda x: 8000,
+                "menu_2": lambda x: "흑돼지 돈가스",
+                "price_2": lambda x: 8000,
+                "menu_3": lambda x: "매생이 보말전",
+                "price_3": lambda x: 8000,
+                "menu_4": lambda x: "영양보말죽",
+                "price_4": lambda x: 8000,
+                "menu_5": lambda x: "고로케",
+                "price_5": lambda x: 6000,
             },
         )
         created_photos = seeder.execute()
@@ -46,7 +57,7 @@ class Command(BaseCommand):
 
         for pk in created_clean:
             restaurant = restaurants_models.Restaurant.objects.get(pk=pk)
-            for i in range(1, 4):
+            for i in range(1, 6):
                 restaurants_models.Photo.objects.create(
                     caption=seeder.faker.sentence(),
                     restaurant=restaurant,

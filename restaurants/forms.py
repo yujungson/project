@@ -4,8 +4,8 @@ from . import models
 
 class SearchForm(forms.Form):
 
-    city = forms.CharField(required=False)
-    name = forms.CharField(initial="None", required=False)
+    city = forms.CharField(required=True)
+    name = forms.CharField(required=False)
     guests = forms.IntegerField(required=False)
     service_options = forms.ModelMultipleChoiceField(
         required=False,

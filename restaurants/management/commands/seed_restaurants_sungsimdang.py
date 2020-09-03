@@ -27,10 +27,20 @@ class Command(BaseCommand):
                 "name": lambda x: "성심당",
                 "city": "대전광역시",
                 "address": "대전 중구 은행동 145",
+                "description": "대전 맛집이지만 전국 방방곡곡 안오는 손님들이 없는 전국 맛집!!! 대전에서 서울까지 사가는 튀김소보로와 부추빵은 최고입니다!!!!",
                 "host": lambda x: random.choice(all_users),
                 "service_options": lambda x: random.choice(service_options),
                 "guests": lambda x: random.randint(1, 3),
-              
+                "menu_1": lambda x: "튀김소보로",
+                "price_1": lambda x: 1500,
+                "menu_2": lambda x: "부추빵",
+                "price_2": lambda x: 1800,
+                "menu_3": lambda x: "성심순크림빵",
+                "price_3": lambda x: 2000,
+                "menu_4": lambda x: "애플파이",
+                "price_4": lambda x: 2500,
+                "menu_5": lambda x: "보문산메아리",
+                "price_5": lambda x: 5000,
             },
         )
         created_photos = seeder.execute()
@@ -47,7 +57,7 @@ class Command(BaseCommand):
 
         for pk in created_clean:
             restaurant = restaurants_models.Restaurant.objects.get(pk=pk)
-            for i in range(1, 4):
+            for i in range(1, 6):
                 restaurants_models.Photo.objects.create(
                     caption=seeder.faker.sentence(),
                     restaurant=restaurant,

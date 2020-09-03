@@ -27,9 +27,20 @@ class Command(BaseCommand):
                 "name": lambda x: "타타미",
                 "city": "서울특별시",
                 "address": "서울 용산구 청파로47길 42",
+                "description": "숙명여대 근처에 위치한 분위기있는 맛집. 연어 벤또와 차슈 벤또는 압도적 1위 메뉴입니다!! 지하에 있으니 오실 때 계단을 조심하세요!!",
                 "host": lambda x: random.choice(all_users),
                 "service_options": lambda x: random.choice(service_options),
                 "guests": lambda x: random.randint(1, 3),
+                "menu_1": lambda x: "닭구이벤또",
+                "price_1": lambda x: 7500,
+                "menu_2": lambda x: "연어벤또",
+                "price_2": lambda x: 8500,
+                "menu_3": lambda x: "차슈벤또",
+                "price_3": lambda x: 9000,
+                "menu_4": lambda x: "가츠오 우동",
+                "price_4": lambda x: 4500,
+                "menu_5": lambda x: "돈카츠벤또",
+                "price_5": lambda x: 7500,
             },
         )
         created_photos = seeder.execute()
@@ -46,7 +57,7 @@ class Command(BaseCommand):
 
         for pk in created_clean:
             restaurant = restaurants_models.Restaurant.objects.get(pk=pk)
-            for i in range(1, 4):
+            for i in range(1, 6):
                 restaurants_models.Photo.objects.create(
                     caption=seeder.faker.sentence(),
                     restaurant=restaurant,

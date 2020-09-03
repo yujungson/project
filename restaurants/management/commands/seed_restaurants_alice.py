@@ -25,11 +25,22 @@ class Command(BaseCommand):
             number,
             {
                 "name": "Alice Cakery",
-                "city": "고양시",
+                "city": "고양시 일산동구",
                 "address": "경기도 고양시 일산동구 일산로358번길 37 1층",
                 "host": lambda x: random.choice(all_users),
                 "service_options": lambda x: random.choice(service_options),
                 "guests": lambda x: random.randint(1, 3),
+                "description": "다양한 케이크와 커피를 맛볼 수 있는 곳",
+                "menu_1": "아메리카노",
+                "price_1": "3500",
+                "menu_2": "말차 딸기 쇼콜라",
+                "price_2": "7300",
+                "menu_3": "단호박 치즈 케이크",
+                "price_3": "7000",
+                "menu_4": "딸기 쌀 쇼트케이크",
+                "price_4": "6700",
+                "menu_5": "계절 과일 빅토리아",
+                "price_5": "7000",
             },
         )
         created_photos = seeder.execute()

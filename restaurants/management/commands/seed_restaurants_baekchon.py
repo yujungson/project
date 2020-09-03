@@ -27,6 +27,7 @@ class Command(BaseCommand):
                 "name": lambda x: "백촌막국수",
                 "city": "강원도",
                 "address": "강원 고성군 토성면 백촌1길 10 백촌막국수",
+                "description": "강원도 바다가 보이는 곳에서 시원한 막국수와 편육을 즐길 수 있는 가게",
                 "host": lambda x: random.choice(all_users),
                 "service_options": lambda x: random.choice(service_options),
                 "guests": lambda x: random.randint(1, 3),
@@ -56,7 +57,7 @@ class Command(BaseCommand):
 
         for pk in created_clean:
             restaurant = restaurants_models.Restaurant.objects.get(pk=pk)
-            for i in range(1, 4):
+            for i in range(1, 6):
                 restaurants_models.Photo.objects.create(
                     caption=seeder.faker.sentence(),
                     restaurant=restaurant,

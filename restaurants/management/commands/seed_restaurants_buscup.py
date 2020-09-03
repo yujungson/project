@@ -27,9 +27,20 @@ class Command(BaseCommand):
                 "name": lambda x: "버스컵 떡볶이",
                 "city": "서울특별시",
                 "address": "서울 용산구 청파로45길 6",
+                "description": "숙대입구역 근처에 위치한 컵 떡볶이와 컵강정을 즐길 수 있는 곳! 아메리카노 같은 떡볶이가 진리",
                 "host": lambda x: random.choice(all_users),
                 "service_options": lambda x: random.choice(service_options),
                 "guests": lambda x: random.randint(1, 3),
+                "menu_1": lambda x: "원조떡볶이",
+                "price_1": lambda x: 2500,
+                "menu_2": lambda x: "포테이토크림떡볶이",
+                "price_2": lambda x: 3000,
+                "menu_3": lambda x: "컵튀김",
+                "price_3": lambda x: 3500,
+                "menu_4": lambda x: "고추치즈 주먹밥",
+                "price_4": lambda x: 3000,
+                "menu_5": lambda x: "한끼모아(떡볶이+스페셜 튀김 세트)",
+                "price_5": lambda x: 4800,
             },
         )
         created_photos = seeder.execute()
@@ -46,7 +57,7 @@ class Command(BaseCommand):
 
         for pk in created_clean:
             restaurant = restaurants_models.Restaurant.objects.get(pk=pk)
-            for i in range(1, 3):
+            for i in range(1, 6):
                 restaurants_models.Photo.objects.create(
                     caption=seeder.faker.sentence(),
                     restaurant=restaurant,
