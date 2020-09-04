@@ -24,19 +24,19 @@ class Command(BaseCommand):
             restaurants_models.Restaurant,
             number,
             {
-                "name": "콰이어트 크림티",
+                "name": "세련",
                 "city": "서울 송파구",
-                "address": "서울 송파구 삼전로12길 7",
+                "address": "서울 송파구 백제고분로 45길 8-1",
                 "host": lambda x: random.choice(all_users),
                 "service_options": lambda x: random.choice(service_options),
                 "guests": random.randint(1, 3),
-                "description": "스콘과 클로티드 크림, 잼과 함께 즐길 수 있는 곳",
-                "menu_1": "달콤한 오리지널 밀크티",
-                "price_1": "7500",
-                "menu_2": "캐러멜 루이보스 밀크티",
-                "price_2": "8000",
-                "menu_3": "오리지널 스콘",
-                "price_3": "3500",
+                "description": "세련된 느낌의 브런치 카페",
+                "menu_1": "tuna crab sandwich",
+                "price_1": "9500",
+                "menu_2": "seryun french toast",
+                "price_2": "6000",
+                "menu_3": "americano",
+                "price_3": "4500",
             },
         )
         created_photos = seeder.execute()
@@ -57,7 +57,7 @@ class Command(BaseCommand):
                 restaurants_models.Photo.objects.create(
                     caption=seeder.faker.sentence(),
                     restaurant=restaurant,
-                    file=f"restaurant_photos/quite_{i}.jpg",
+                    file=f"restaurant_photos/seryun_{i}.jpg",
                 )
             for a in highlights:
                 magic_number = random.randint(1, 20)

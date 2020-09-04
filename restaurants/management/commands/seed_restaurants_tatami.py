@@ -25,7 +25,7 @@ class Command(BaseCommand):
             number,
             {
                 "name": lambda x: "타타미",
-                "city": "서울특별시",
+                "city": "서울 용산구",
                 "address": "서울 용산구 청파로47길 42",
                 "description": "숙명여대 근처에 위치한 분위기있는 맛집. 연어 벤또와 차슈 벤또는 압도적 1위 메뉴입니다!! 지하에 있으니 오실 때 계단을 조심하세요!!",
                 "host": lambda x: random.choice(all_users),

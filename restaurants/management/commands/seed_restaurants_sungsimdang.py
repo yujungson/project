@@ -25,7 +25,7 @@ class Command(BaseCommand):
             number,
             {
                 "name": lambda x: "성심당",
-                "city": "대전광역시",
+                "city": "대전 중구",
                 "address": "대전 중구 은행동 145",
                 "description": "대전 맛집이지만 전국 방방곡곡 안오는 손님들이 없는 전국 맛집!!! 대전에서 서울까지 사가는 튀김소보로와 부추빵은 최고입니다!!!!",
                 "host": lambda x: random.choice(all_users),

@@ -57,7 +57,7 @@ class Command(BaseCommand):
                 restaurants_models.Photo.objects.create(
                     caption=seeder.faker.sentence(),
                     restaurant=restaurant,
-                    file=f"uploads/restaurant_photos/hotelde_{i}.jpg",
+                    file=f"restaurant_photos/hotelde_{i}.jpg",
                 )
             for a in highlights:
                 magic_number = random.randint(1, 20)

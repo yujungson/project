@@ -25,7 +25,7 @@ class Command(BaseCommand):
             number,
             {
                 "name": lambda x: "농장사람들-후라이팬에 구워도 맛있는 집",
-                "city": "서울특별시",
+                "city": "서울 영등포구",
                 "address": "서울 영등포구 여의대방로 115",
                 "description": "정육점 식당에서 즐길 수 있는 신선하고 저렴한 고기. 진짜 맛있는 고기는 후라이팬에 구워도 맛있다!!",
                 "host": lambda x: random.choice(all_users),

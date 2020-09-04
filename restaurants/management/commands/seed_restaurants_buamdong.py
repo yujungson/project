@@ -25,7 +25,7 @@ class Command(BaseCommand):
             number,
             {
                 "name": lambda x: "부암동 치킨",
-                "city": "서울특별시",
+                "city": "서울 용산구",
                 "address": "서울 용산구 청파로47길 57",
                 "description": "숙명여대 앞에서 시원한 맥주와 후라이드, 양념 치킨을 즐길 수 있는 맛집",
                 "host": lambda x: random.choice(all_users),

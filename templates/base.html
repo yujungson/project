@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-    <title>{% block page_title %}{% endblock page_title %}| Nbnb</title>
+    <title>{% block page_title %}{% endblock page_title %}| MSC</title>
 </head>
 
 <body class="text-gray-800 mt-24">
@@ -21,7 +21,7 @@
 
             {% block search-bar %}
             <form method="get" action="{% url "restaurants:search" %}">
-                <input name="city" placeholder="Search by City" />
+                <input name="city" placeholder="Search" />
             </form>
 
             {% endblock search-bar %}

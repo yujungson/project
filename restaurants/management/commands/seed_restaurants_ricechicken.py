@@ -25,7 +25,7 @@ class Command(BaseCommand):
             number,
             {
                 "name": lambda x: "김종용 누룽지통닭",
-                "city": "서울특별시",
+                "city": "서울 영등포구",
                 "address": "서울 영등포구 여의대방로 131 (신길동)",
                 "description": "김종용 누룽지 통닭의 본점. 보라매역 출구로 부터 도보 1분거리. 맵찔이들에게는 누룽지 통닭, 매운거 마니아들은 누룽지 치즈불닭!!!",
                 "host": lambda x: random.choice(all_users),

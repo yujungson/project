@@ -25,7 +25,7 @@ class Command(BaseCommand):
             number,
             {
                 "name": lambda x: "버스컵 떡볶이",
-                "city": "서울특별시",
+                "city": "서울 용산구",
                 "address": "서울 용산구 청파로45길 6",
                 "description": "숙대입구역 근처에 위치한 컵 떡볶이와 컵강정을 즐길 수 있는 곳! 아메리카노 같은 떡볶이가 진리",
                 "host": lambda x: random.choice(all_users),

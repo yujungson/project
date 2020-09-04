@@ -25,7 +25,7 @@ class Command(BaseCommand):
             number,
             {
                 "name": lambda x: "frame676",
-                "city": "서울특별시",
+                "city": "서울 동작구",
                 "address": "서울 동작구 시흥대로 676",
                 "description": "넓직한 공간배치와 갤러리를 갖추고 있는 분위기 갑 식당. 지하의 카페는 스터디와 간소한 수다를 위한 곳이니 식사는 위층에서 부탁드립니다.!",
                 "host": lambda x: random.choice(all_users),

@@ -24,19 +24,19 @@ class Command(BaseCommand):
             restaurants_models.Restaurant,
             number,
             {
-                "name": "세련",
+                "name": "온화",
                 "city": "서울 송파구",
-                "address": "서울 송파구 백제고분로 45길 8-1",
+                "address": "서울 송파구 백제고분로 45길 15 2층",
                 "host": lambda x: random.choice(all_users),
                 "service_options": lambda x: random.choice(service_options),
                 "guests": random.randint(1, 3),
-                "description": "세련된 느낌의 브런치 카페",
-                "menu_1": "tuna crab sandwich",
-                "price_1": "9500",
-                "menu_2": "seryun french toast",
-                "price_2": "6000",
-                "menu_3": "americano",
-                "price_3": "4500",
+                "description": "수플레 팬 케이크, 드립커피 전문점",
+                "menu_1": "수플레 팬케이크 플레인",
+                "price_1": "16000",
+                "menu_2": "수플레 팬케이크 벌집",
+                "price_2": "20000",
+                "menu_3": "핸드드립 온",
+                "price_3": "5900",
             },
         )
         created_photos = seeder.execute()
@@ -57,7 +57,7 @@ class Command(BaseCommand):
                 restaurants_models.Photo.objects.create(
                     caption=seeder.faker.sentence(),
                     restaurant=restaurant,
-                    file=f"restaurant_photos/selyeon_{i}.jpg",
+                    file=f"restaurant_photos/onhwa_{i}.jpg",
                 )
             for a in highlights:
                 magic_number = random.randint(1, 20)

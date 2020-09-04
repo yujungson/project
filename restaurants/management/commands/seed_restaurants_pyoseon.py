@@ -25,7 +25,7 @@ class Command(BaseCommand):
             number,
             {
                 "name": lambda x: "표선칼국수",
-                "city": "제주도",
+                "city": "제주 서귀포시",
                 "address": "제주 서귀포시 표선면 민속해안로 578-3",
                 "description": "해비치 리조트와 호텔의 직원들이 강력 추천한 맛집. 해장, 보양 모두 갖춘 맛집. 아이들에게 1위 메뉴는 흑돼지 돈까스!! 어른들에게 1위 메뉴는 보말칼국수!!",
                 "host": lambda x: random.choice(all_users),

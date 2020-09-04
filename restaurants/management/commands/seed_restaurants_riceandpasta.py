@@ -25,7 +25,7 @@ class Command(BaseCommand):
             number,
             {
                 "name": lambda x: "라이스 앤 파스타",
-                "city": "서울특별시",
+                "city": "서울 동작구",
                 "address": "서울 동작구 보라매로5가길 16 보라매아카데미타워 2층 202-1",
                 "description": "아카데미 타워 2층 식당가에 위치한 라이스와 파스타를 파는 곳. 맛대맛, 생생정보통에 출연했던 맛집! 점심 스페셜 세트는 가성비 최고!",
                 "host": lambda x: random.choice(all_users),

@@ -25,7 +25,7 @@ class Command(BaseCommand):
             number,
             {
                 "name": lambda x: "백촌막국수",
-                "city": "강원도",
+                "city": "강원 고성군",
                 "address": "강원 고성군 토성면 백촌1길 10 백촌막국수",
                 "description": "강원도 바다가 보이는 곳에서 시원한 막국수와 편육을 즐길 수 있는 가게",
                 "host": lambda x: random.choice(all_users),

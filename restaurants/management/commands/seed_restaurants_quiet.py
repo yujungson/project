@@ -24,19 +24,19 @@ class Command(BaseCommand):
             restaurants_models.Restaurant,
             number,
             {
-                "name": "마피아 디저트",
-                "city": "서울 용산구",
-                "address": "서울 용산구 녹사평대로40나길 26",
+                "name": "콰이어트 크림티",
+                "city": "서울 송파구",
+                "address": "서울 송파구 삼전로12길 7",
                 "host": lambda x: random.choice(all_users),
                 "service_options": lambda x: random.choice(service_options),
                 "guests": random.randint(1, 3),
-                "description": "뷰가 좋은 티라미수 맛집",
-                "menu_1": "티라미수 오리지널",
-                "price_1": "12000",
-                "menu_2": "더치커피",
-                "price_2": "5500",
-                "menu_3": "말차 우유",
-                "price_3": "6000",
+                "description": "스콘과 클로티드 크림, 잼과 함께 즐길 수 있는 곳",
+                "menu_1": "달콤한 오리지널 밀크티",
+                "price_1": "7500",
+                "menu_2": "캐러멜 루이보스 밀크티",
+                "price_2": "8000",
+                "menu_3": "오리지널 스콘",
+                "price_3": "3500",
             },
         )
         created_photos = seeder.execute()
@@ -57,7 +57,7 @@ class Command(BaseCommand):
                 restaurants_models.Photo.objects.create(
                     caption=seeder.faker.sentence(),
                     restaurant=restaurant,
-                    file=f"restaurant_photos/mapia_{i}.jpg",
+                    file=f"restaurant_photos/quiet_{i}.jpg",
                 )
             for a in highlights:
                 magic_number = random.randint(1, 20)
