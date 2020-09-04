@@ -19,7 +19,6 @@ class CustomUserAdmin(UserAdmin):
                         "bio",
                         "birthdate",
                         "language",
-                        "currency",
                         "login_method",
                     )
                 },
@@ -35,7 +34,6 @@ class CustomUserAdmin(UserAdmin):
         "email",
         "is_active",
         "language",
-        "currency",
         "is_staff",
         "email_verified",
         "email_secret",

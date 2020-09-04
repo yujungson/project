@@ -1,7 +1,7 @@
 from django.utils import timezone
 from django.db import models
 from django.urls import reverse
-from django_countries.fields import CountryField
+from django.utils.translation import gettext_lazy as _
 from core import models as core_models
 from cal import Calendar
 
@@ -123,7 +123,7 @@ class Restaurant(core_models.TimeStampedModel):
     description = models.TextField()
     city = models.CharField(max_length=80)
     address = models.CharField(max_length=140)
-    guests = models.IntegerField(help_text="How many people will be staying?")
+    guests = models.IntegerField(help_text=_("How many people will be staying?"))
 
     menu_1 = models.CharField(max_length=150)
     price_1 = models.IntegerField()
