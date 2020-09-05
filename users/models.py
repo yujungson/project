@@ -32,7 +32,6 @@ class User(AbstractUser):
         (LANGUAGE_KOREAN, _("Korean")),
     )
 
-
     LOGIN_EMAIL = "email"
     LOGING_KAKAO = "kakao"
 
@@ -55,7 +54,7 @@ class User(AbstractUser):
         blank=True,
         default=LANGUAGE_KOREAN,
     )
-    
+
     email_verified = models.BooleanField(default=False)
     email_secret = models.CharField(max_length=20, default="", blank=True)
     login_method = models.CharField(

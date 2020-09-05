@@ -4,30 +4,37 @@
     <li class="nav_link">
         <a href="{% url 'users:switch-hosting' %}">
             {% if request.session.is_hosting %}
-            {% trans "호스트 정지" %}
+            {% trans "Stop hosting" %}
             {% else %}
-            {% trans "호스트 시작" %}
+            {% trans "Start hosting" %}
             {% endif %}
         </a>
     </li>
     {% if request.session.is_hosting %}
-    <li class="nav_link"><a href="{% url "restaurants:create" %}">{% trans "식당 생성하기" %}</a></li>
+    <li class="nav_link"><a href="{% url "restaurants:create" %}">{% trans "Create a Restaurant" %}</a></li>
     {% endif %}
 
     {% if request.session.is_hosting %}
-    <li class="nav_link"><a href="{% url "users:host-reservation" user.pk %}">{% trans "나의 예약" %}</a>
+    <li class="nav_link"><a href="{% url "users:host-reservation" user.pk %}">{% trans "My Reservation(for Host)" %}</a>
     </li>
     {% else %}
-    <li class="nav_link"><a href="{% url "users:guest-reservation" user.pk %}">{% trans "나의 예약 (게스트)" %}</a>
+    <li class="nav_link"><a
+            href="{% url "users:guest-reservation" user.pk %}">{% trans "My Reservation(for Guest)" %}</a>
     </li>
     {% endif %}
 
-    <li class="nav_link"><a href="{% url "lists:see-favs" %}">{% trans "즐겨찾기" %} ({{user.list.restaurants.count}})</a>
+    <li class="nav_link"><a href="{% url "lists:see-favs" %}">{% trans "Favorites" %}
+            {% if user.list.restaurants.count %}
+            ({{user.list.restaurants.count}})
+            {% else %}
+            (0)
+            {% endif %}
+        </a>
     </li>
-    <li class="nav_link"><a href="{{user.get_absolute_url}}">{% trans "나의 프로필" %}</a></li>
-    <li class="nav_link"><a href="{% url "users:logout" %}">{% trans "로그아웃" %}</a></li>
+    <li class="nav_link"><a href="{{user.get_absolute_url}}">{% trans "Profile" %}</a></li>
+    <li class="nav_link"><a href="{% url "users:logout" %}">{% trans "Log out" %}</a></li>
     {% else %}
-    <li class="nav_link"><a href="{% url "users:login" %}">{% trans "로그인" %}</a></li>
-    <li class="nav_link"><a href="{% url "users:signup" %}">{% trans "회원가입" %}</a></li>
+    <li class="nav_link"><a href="{% url "users:login" %}">{% trans "Log in" %}</a></li>
+    <li class="nav_link"><a href="{% url "users:signup" %}">{% trans "Sign up" %}</a></li>
     {% endif %}
 </ul>

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static i18n %}
 {% block page_title %}
 {{user.first_name}}'s Fav
 {% endblock page_title %}
@@ -8,7 +8,7 @@
 
 <div class="min-h-75vh">
 
-    <h3 class="mb-12 text-2xl text-center">즐겨찾기 목록</h3>
+    <h3 class="mb-12 text-2xl text-center">{%trans "List of Favourites"%}</h3>
 
 
     <div class="container mx-auto pb-10 ">

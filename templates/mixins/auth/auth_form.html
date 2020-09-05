@@ -1,3 +1,4 @@
+{% load static i18n %}
 <form method="POST" class="w-full" enctype="multipart/form-data">
     {% csrf_token %}
 
@@ -11,5 +12,5 @@
     {% include 'mixins/auth/form_input.html' with field=field %}
     {% endfor %}
 
-    <button class="btn bg-red-500 text-white">{{cta}}</button>
+    <button class="btn bg-red-500 text-white">{%trans cta%}</button>
 </form>

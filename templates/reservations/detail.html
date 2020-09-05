@@ -37,9 +37,9 @@ Reservation {{reservation.date}} {{reservation.time}}
             </div>
             <div class="ml-5 flex flex-col">
                 {% if request.session.is_hosting %}
-                <span class="font-medium mb-px">Contact your Guest</span>
+                <span class="font-medium mb-px">{%trans "Contact your Guest"%}</span>
                 {% else %}
-                <span class="font-medium mb-px">Contact your Host</span>
+                <span class="font-medium mb-px">{%trans "Contact your Host"%}</span>
                 {% endif %}
                 <a href="{% url 'conversations:go' reservation.restaurant.host.pk reservation.guest.pk %}"
                     class="font-medium text-teal-500">Send a Message</a>
@@ -50,11 +50,11 @@ Reservation {{reservation.date}} {{reservation.time}}
             {% if not request.session.is_hosting %}
             {% if reservation.status != 'canceled' %}
             {% if reservation.status == 'confirmed' and reservation.is_finished %}
-            <span class="font-medium text-2xl text-center w-full block mb-5">Write your review</span>
+            <span class="font-medium text-2xl text-center w-full block mb-5">{%trans "Write your review"%}</span>
             <form action="{% url 'reviews:create' reservation.restaurant.pk %}" method="POST" class="w-1/2 mx-auto">
                 {% csrf_token %}
                 {{form}}
-                <button class="btn-link mt-5">Submit Review</button>
+                <button class="btn-link mt-5">{%trans "Submit Review"%}</button>
             </form>
             {% else %}
             {% if reservation.status == 'pending' %}

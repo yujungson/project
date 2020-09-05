@@ -32,10 +32,10 @@
         {% on_favs restaurant as on_favs_boolean %}
         {% if on_favs_boolean %}
         <a class="block mb-10 w-2/6 text-teal-600 font-bold"
-            href="{% url 'lists:toggle-restaurant' restaurant.pk %}?action=remove">{% trans "즐겨찾기에서 삭제" %}</a>
+            href="{% url 'lists:toggle-restaurant' restaurant.pk %}?action=remove">{% trans "Delete from Favourites" %}</a>
         {% else %}
         <a class="block mb-10 w-2/6 text-teal-600 font-bold"
-            href="{% url 'lists:toggle-restaurant' restaurant.pk %}?action=add">{% trans "즐겨찾기에 추가" %}</a>
+            href="{% url 'lists:toggle-restaurant' restaurant.pk %}?action=add">{% trans "Add to Favourites" %}</a>
         {% endif %}
 
         <div class="flex border-section">
@@ -103,7 +103,7 @@
             </div>
         </div>
         <div class="mt-10">
-            <h4 class="font-medium text-2xl mb-5">Reviews</h4>
+            <h4 class="font-medium text-2xl mb-5">{%trans "Reviews"%}</h4>
             <div class="flex items-center">
                 <div>
                     <i class="fas fa-star text-teal-500"></i>
@@ -135,7 +135,7 @@
     </div>
     <div class="w-1/3">
         {% if restaurant.host == user %}
-        <a href="{% url 'restaurants:edit' restaurant.pk %}" class="btn-link block">Edit Restaurant</a>
+        <a href="{% url 'restaurants:edit' restaurant.pk %}" class="btn-link block">{%trans "Edit Restaurant"%}</a>
         {% else %}
         {% if not request.session.is_hosting %}
         {% for calendar in restaurant.get_calendars %}
@@ -172,7 +172,7 @@
 
         <div class="my-5 w-full">
             <div class="border border-gray-700 rounded-lg">
-                <span class="p-3 text-center font-semibold text-lg block">Best Menu</span>
+                <span class="p-3 text-center font-semibold text-lg block">{%trans "Best Menu"%}</span>
                 <div class="grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-2 mb-3">
                     <div class=" text-center font-medium text-lg bg-white overflow-hidden border border-gray-200 p-1">
                         {{restaurant.menu_1}}

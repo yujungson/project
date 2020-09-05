@@ -4,13 +4,15 @@
         <span>
             {% trans "Please don't copy us." %}
         </span>
-        <span>&copy; 2019 Nomad Coders. {% trans "All rights reserved" %}.</span>
+        <span>&copy; 2020 SuTongKeom. {% trans "All rights reserved" %}.</span>
     </div>
-    <div class="mt-10 flex">
+    <div class="flex-1 w-64">
         {% get_current_language as LANGUAGE_CODE %}
-        <select class="w-1/5 h-8" id="js-lang">
+        <select
+            class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py- pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+            id="js-lang">
             <option value="en" {% if LANGUAGE_CODE == 'en' %} selected {% endif %}>English</option>
-            <option value="ko" {% if LANGUAGE_CODE == 'ko' %} selected {% endif %}>Korean</option>
+            <option value="ko" {% if LANGUAGE_CODE == 'ko' %} selected {% endif %}>한국어</option>
         </select>
     </div>
 </footer>

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static i18n %}
 
 {% block page_title %}
 {{user.first_name}}'s Reservation
@@ -9,7 +10,7 @@
 <div class="md:w-full px-6 container mx-auto pb-10 flex flex-col items-start border p-6 border-white">
     <h3 class="mb-5 ml-5 text-3xl font-bold">Guest {{user.first_name}}'s Reservations</h3>
     <div class="md:w-full px-6 container mx-auto pb-10 flex flex-col items-start border p-6 border-gray-400">
-        <h3 class="text-2xl mb-5 ml-2">Reservations In Progress</h3>
+        <h3 class="text-2xl mb-5 ml-2">{% trans "Reservations In Progress"%}</h3>
         <div class="grid gap-2 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 mt-1">
             {% for i in reservation %}
             {% if not i.is_finished %}
@@ -45,7 +46,7 @@
         </div>
     </div>
     <div class="md:w-full px-6 container mx-auto pb-10 flex flex-col items-start border p-6 border-gray-400">
-        <h3 class="text-2xl mb-5 ml-2">Finished Reservations</h3>
+        <h3 class="text-2xl mb-5 ml-2">{% trans "Finished Reservations" %}</h3>
         <div class="grid gap-2 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 mt-1">
             {% for i in reservation %}
             {% if i.is_finished %}

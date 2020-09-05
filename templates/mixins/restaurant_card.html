@@ -1,19 +1,26 @@
-<div class="w-1/4 mb-10 px-2">
+<div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
     <a href="{% url 'restaurants:detail' restaurant.pk %}">
-        <div class="w-full h-64 bg-cover bg-center rounded-lg mb-2"
+        <div class="flex items-end justify-end h-56 w-full bg-cover"
             style="background-image: url({{restaurant.first_photo}});">
         </div>
-        <div class="flex justify-between mb-2">
+        <div class="flex justify-between mb-2 mx-5 my-2">
             <div class="w-4/5 block truncate overflos-hidden flex">
+                {% if restaurant.host.superhost %}
+                <span
+                    class="mr-2 uppercase font-medium text-xs border border-black text-black rounded py-px px-1">superhost</span>
+                {% endif %}
                 <span class="text-sm text-gray-600 block truncate font-light">{{restaurant.city}}</span>
             </div>
+
             <span class="text-sm flex items-center">
                 <i class="fas fa-star text-red-500 text-xs mr-px"></i> {{restaurant.total_rating}}
             </span>
 
         </div>
-        <span class="text-black w-11/12 block truncate">
+
+        <span class="text-black w-11/12 block truncate mx-5 my-2">
             {{restaurant.name}}
         </span>
+
     </a>
 </div>

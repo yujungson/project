@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static i18n %}
 {% block page_title %}
 Update Restaurant
 {% endblock page_title %}
@@ -14,7 +14,8 @@ Update Restaurant
 
     {% include 'mixins/auth/auth_form.html' with form=form cta="Update restaurant" %}
     <div class="mt-5">
-        <a href="{% url 'restaurants:photos' restaurant.pk %}" class="text-teal-500 font-medium">Edit Photos</a>
+        <a href="{% url 'restaurants:photos' restaurant.pk %}"
+            class="text-teal-500 font-medium">{%trans "Edit Photos"%}</a>
     </div>
 
 </div>

@@ -144,14 +144,13 @@ class UpdateProfileView(mixins.LoggedInOnlyView, SuccessMessageMixin, UpdateView
     model = models.User
     template_name = "users/update-profile.html"
     fields = (
-        "email",
         "first_name",
         "last_name",
+        "email",
         "gender",
-        "bio",
-        "birthdate",
         "language",
-        "currency",
+        "birthdate",
+        "bio",
     )
     success_message = "Profile Updated"
 
