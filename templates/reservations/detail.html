@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static i18n %}
 
 {% block page_title %}
 Reservation {{reservation.date}} {{reservation.time}}
@@ -37,12 +38,12 @@ Reservation {{reservation.date}} {{reservation.time}}
             </div>
             <div class="ml-5 flex flex-col">
                 {% if request.session.is_hosting %}
-                <span class="font-medium mb-px">{%trans "Contact your Guest"%}</span>
+                <span class="font-medium mb-px">{% trans "Contact your Guest" %}</span>
                 {% else %}
-                <span class="font-medium mb-px">{%trans "Contact your Host"%}</span>
+                <span class="font-medium mb-px">{% trans "Contact your Host" %}</span>
                 {% endif %}
                 <a href="{% url 'conversations:go' reservation.restaurant.host.pk reservation.guest.pk %}"
-                    class="font-medium text-teal-500">Send a Message</a>
+                    class="font-medium text-teal-500">{% trans "Send a Message" %}</a>
             </div>
         </div>
 

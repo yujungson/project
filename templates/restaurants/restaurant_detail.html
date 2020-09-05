@@ -22,7 +22,7 @@
         <div class="flex justify-between">
             <div class="mb-5">
                 <h4 class="text-3xl font-medium mb-px">{{restaurant.name}}</h4>
-                <span class="text-gray-700 font-light">{{restaurant.city}}</span>
+                <span class="text-gray-700 font-light">{{restaurant.address}}</span>
             </div>
             <a href="{{restaurant.host.get_absolute_url}}" class="flex flex-col items-center">
                 {% include "mixins/user_avatar.html" with user=restaurant.host %}
@@ -38,12 +38,15 @@
             href="{% url 'lists:toggle-restaurant' restaurant.pk %}?action=add">{% trans "Add to Favourites" %}</a>
         {% endif %}
 
-        <div class="flex border-section">
-            <span class="mr-5 font-light">{{restaurant.guests}} guest{{restaurant.guests|pluralize}}</span>
-        </div>
         <p class="border-section">
             {{restaurant.description}}
         </p>
+        <div class="flex border-section">
+            <span class="mr-5 font-light">
+                {{restaurant.guests}} {% trans "guests" %}</span>
+        </div>
+
+
         <div>
             <div class="grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-2 m-5 mb-10">
                 <div class="bg-white overflow-hidden hover:bg-green-100 border border-gray-200 p-1">

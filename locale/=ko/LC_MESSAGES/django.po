@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-06 02:46+0900\n"
+"POT-Creation-Date: 2020-09-06 02:09+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,222 +16,192 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: .\config\settings.py:119 .\users\models.py:32
 msgid "Korean"
-msgstr "한국어"
+msgstr ""
 
 #: .\config\settings.py:120 .\users\models.py:31
 msgid "English"
-msgstr "영어"
+msgstr ""
 
 #: .\reservations\models.py:26
 msgid "Pending"
-msgstr "예약 대기 중입니다."
+msgstr ""
 
 #: .\reservations\models.py:27
 msgid "Confirmed"
-msgstr "예약 확정되었습니다."
+msgstr ""
 
 #: .\reservations\models.py:28
 msgid "Canceled"
-msgstr "예약 취소되었습니다."
+msgstr ""
 
 #: .\restaurants\models.py:126
 msgid "How many people will be staying?"
-msgstr "몇 명이 숙소를 이용할 예정인가요?"
+msgstr ""
 
 #: .\templates\base.html:24
 msgid "Search_by_city"
-msgstr "도시를_검색해_보세요!"
+msgstr ""
 
 #: .\templates\conversations\conversation_detail.html:15
 msgid "Conversation between:"
-msgstr "대화상대:"
+msgstr ""
 
 #: .\templates\conversations\conversation_detail.html:56
 msgid "Write a Message"
-msgstr "메시지를 작성해주세요."
+msgstr ""
 
 #: .\templates\conversations\conversation_detail.html:57
 msgid "Send Comment"
-msgstr "의견 보내기"
+msgstr ""
 
 #: .\templates\emails\verify_email.html:1
 msgid "Verify Email"
-msgstr "이메일 인증"
+msgstr ""
 
 #: .\templates\emails\verify_email.html:2
 msgid "To verify your email, click"
-msgstr "당신의 이메일을 인증하기를 원한다면 누르세요."
+msgstr ""
 
 #: .\templates\lists\list_detail.html:11
 msgid "List of Favourites"
-msgstr "즐겨찾기 목록"
+msgstr ""
 
 #: .\templates\partials\footer.html:5
 msgid "Please don't copy us."
-msgstr "복제가 금지됩니다."
+msgstr ""
 
 #: .\templates\partials\footer.html:7
 msgid "All rights reserved"
-msgstr "All rights reserved"
+msgstr ""
 
 #: .\templates\partials\nav.html:7
 msgid "Stop hosting"
-msgstr "게스트 모드 전환"
+msgstr ""
 
 #: .\templates\partials\nav.html:9
 msgid "Start hosting"
-msgstr "호스트 모드 전환"
+msgstr ""
 
 #: .\templates\partials\nav.html:14
 msgid "Create a Restaurant"
-msgstr "새로운 장소 생성"
+msgstr ""
 
 #: .\templates\partials\nav.html:18
 msgid "My Reservation(for Host)"
-msgstr "예약 확인(호스트)"
+msgstr ""
 
 #: .\templates\partials\nav.html:22
 msgid "My Reservation(for Guest)"
-msgstr "예약 확인(게스트)"
+msgstr ""
 
 #: .\templates\partials\nav.html:26
 msgid "Favorites"
-msgstr "즐겨찾기"
+msgstr ""
 
 #: .\templates\partials\nav.html:34
 msgid "Profile"
-msgstr "프로필"
+msgstr ""
 
 #: .\templates\partials\nav.html:35
 msgid "Log out"
-msgstr "로그아웃"
+msgstr ""
 
 #: .\templates\partials\nav.html:37 .\templates\users\signup.html:21
 msgid "Log in"
-msgstr "로그인"
+msgstr ""
 
 #: .\templates\partials\nav.html:38 .\templates\users\login.html:20
 msgid "Sign up"
-msgstr "계정 생성"
+msgstr ""
 
 #: .\templates\reservations\choose_detail.html:15
 msgid "Lunch"
-msgstr "점심"
+msgstr ""
 
 #: .\templates\reservations\choose_detail.html:45
 msgid "Dinner"
-msgstr "저녁"
+msgstr ""
 
 #: .\templates\reservations\choose_detail.html:77
 msgid "Number Of Guests"
-msgstr "예약 할 인원"
+msgstr ""
 
 #: .\templates\reservations\choose_detail.html:80
 msgid "Make Reservation"
-msgstr "예약이 완료되었습니다."
+msgstr ""
 
 #: .\templates\reservations\detail.html:41
 msgid "Contact your Guest"
-msgstr "게스트에게 연락해보세요!"
+msgstr ""
 
 #: .\templates\reservations\detail.html:43
 msgid "Contact your Host"
-msgstr "호스트에게 연락해보세요!"
+msgstr ""
 
 #: .\templates\reservations\detail.html:46
 msgid "Send a Message"
-msgstr "메시지를 작성해주세요."
+msgstr ""
 
 #: .\templates\reservations\detail.html:54
 msgid "Write your review"
-msgstr "후기를 남겨주세요."
+msgstr ""
 
 #: .\templates\reservations\detail.html:58
 msgid "Submit Review"
-msgstr "후기 작성"
+msgstr ""
 
 #: .\templates\reservations\guest_reservation.html:11
 msgid "Guest"
-msgstr "게스트"
+msgstr ""
 
 #: .\templates\reservations\guest_reservation.html:11
 #: .\templates\reservations\host_reservation.html:12
 msgid "'s Reservations"
-msgstr "님의 예약"
+msgstr ""
 
 #: .\templates\reservations\guest_reservation.html:13
 msgid "Reservations In Progress"
-msgstr "진행중인 예약"
-
-#: .\templates\reservations\guest_reservation.html:33
-#: .\templates\reservations\guest_reservation.html:69
-#: .\templates\reservations\host_reservation.html:34
-#: .\templates\reservations\host_reservation.html:80
-msgid "Reservation Date"
-msgstr "예약 날짜"
-
-#: .\templates\reservations\guest_reservation.html:36
-#: .\templates\reservations\guest_reservation.html:72
-#: .\templates\reservations\host_reservation.html:37
-#: .\templates\reservations\host_reservation.html:83
-msgid "Reservation Time"
-msgstr "예약 시간"
+msgstr ""
 
 #: .\templates\reservations\guest_reservation.html:49
 #: .\templates\reservations\host_reservation.html:60
 msgid "Finished Reservations"
-msgstr "완료된 예약"
+msgstr ""
 
 #: .\templates\reservations\host_reservation.html:12
 msgid "Host"
-msgstr "호스트"
+msgstr ""
 
 #: .\templates\reservations\host_reservation.html:14
 msgid "Reservations In Progress "
-msgstr "진행중인 예약"
-
-#: .\templates\reservations\host_reservation.html:40
-#: .\templates\reservations\host_reservation.html:86
-msgid "Guest Name"
-msgstr "게스트 이름"
-
-#: .\templates\reservations\host_reservation.html:43
-#: .\templates\reservations\host_reservation.html:89
-msgid "Number of Guests"
-msgstr "예약 인원"
+msgstr ""
 
 #: .\templates\restaurants\restaurant_detail.html:35
 msgid "Delete from Favourites"
-msgstr "즐겨찾기에서 삭제"
+msgstr ""
 
 #: .\templates\restaurants\restaurant_detail.html:38
 msgid "Add to Favourites"
-msgstr "즐겨찾기에 저장"
+msgstr ""
 
-#: .\templates\restaurants\restaurant_detail.html:48
-#| msgid "guest"
-msgid "guests"
-msgstr "명 최대 예약 가능"
-
-#: .\templates\restaurants\restaurant_detail.html:108
+#: .\templates\restaurants\restaurant_detail.html:106
 msgid "Reviews"
-msgstr "후기 작성"
+msgstr ""
 
-#: .\templates\restaurants\restaurant_detail.html:140
+#: .\templates\restaurants\restaurant_detail.html:138
 msgid "Edit Restaurant"
-msgstr "장소 수정하기"
+msgstr ""
 
-#: .\templates\restaurants\restaurant_detail.html:177
+#: .\templates\restaurants\restaurant_detail.html:175
 msgid "Best Menu"
-msgstr "대표 메뉴"
+msgstr ""
 
 #: .\templates\restaurants\restaurant_edit.html:18
 msgid "Edit Photos"
-msgstr "사진 수정하기"
+msgstr ""
 
 #: .\templates\restaurants\restaurant_list.html:27
 #, python-format
@@ -242,95 +212,85 @@ msgstr ""
 
 #: .\templates\restaurants\restaurant_photos.html:15
 msgid "Upload Photo"
-msgstr "사진 올리기"
+msgstr ""
 
 #: .\templates\restaurants\restaurant_photos.html:29
 msgid "Delete"
-msgstr "삭제"
-
-#: .\templates\restaurants\restaurant_photos.html:36
-msgid "Back to edit restaurant"
-msgstr "음식점 수정으로 돌아가기"
+msgstr ""
 
 #: .\templates\restaurants\search.html:14
 #: .\templates\restaurants\search.html:18
 msgid "Search"
-msgstr "검색"
+msgstr ""
 
 #: .\templates\restaurants\search.html:15
 msgid "Use filters"
-msgstr "필터를 사용해보세요!"
+msgstr ""
 
 #: .\templates\restaurants\search.html:24
 msgid "Results"
-msgstr "결과"
+msgstr ""
 
 #: .\templates\restaurants\search.html:31
 msgid "restaurants"
-msgstr "개의 장소가 검색되었어요!"
+msgstr ""
 
 #: .\templates\restaurants\search.html:44
 msgid "superhost"
-msgstr "슈퍼호스트"
+msgstr ""
 
 #: .\templates\users\login.html:19
 msgid "Don't you have an account yet?"
-msgstr "아직 계정이 없으신가요?"
+msgstr ""
 
 #: .\templates\users\signup.html:20
 msgid "Do you already have an account?"
-msgstr "이미 계정이 있으신가요?"
+msgstr ""
 
 #: .\templates\users\update-profile.html:17
 msgid "Change Password"
-msgstr "비밀번호 바꾸기"
+msgstr ""
 
 #: .\templates\users\user_detail.html:27
 msgid "Edit Profile"
-msgstr "프로필 수정하기"
+msgstr ""
 
 #: .\templates\users\user_detail.html:34
 msgid "'s Restaurants"
-msgstr "의 장소"
+msgstr ""
 
 #: .\users\mixins.py:13
 msgid "Can't go there"
-msgstr "접근불가"
+msgstr ""
 
 #: .\users\models.py:22
 msgid "Male"
-msgstr "남자"
+msgstr ""
 
 #: .\users\models.py:23
 msgid "Female"
-msgstr "여자"
+msgstr ""
 
 #: .\users\models.py:24
 msgid "Other"
-msgstr "기타"
+msgstr ""
 
 #: .\users\models.py:43
 msgid "first name"
-msgstr "이름"
+msgstr ""
 
 #: .\users\models.py:46
 msgid "gender"
-msgstr "성별"
+msgstr ""
 
 #: .\users\models.py:48
 msgid "bio"
-msgstr "바이오"
+msgstr ""
 
 #: .\users\models.py:51
 msgid "language"
-msgstr "언어"
+msgstr ""
 
 #: .\users\models.py:76
 msgid "Verify Your Account"
-msgstr "계정 확인"
-
-#~ msgid "Create Room"
-#~ msgstr "방 만들기"
-
-#~ msgid "Favs"
-#~ msgstr "즐겨찾기"
+msgstr ""

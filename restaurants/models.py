@@ -135,10 +135,10 @@ class Restaurant(core_models.TimeStampedModel):
     price_3 = models.IntegerField()
 
     menu_4 = models.CharField(max_length=150, default=" ")
-    price_4 = models.IntegerField(default=0)
+    price_4 = models.IntegerField()
 
     menu_5 = models.CharField(max_length=150, default=" ")
-    price_5 = models.IntegerField(default=0)
+    price_5 = models.IntegerField()
 
     host = models.ForeignKey(
         "users.User", related_name="restaurants", on_delete=models.CASCADE
