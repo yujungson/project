@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-06 02:46+0900\n"
+"POT-Creation-Date: 2020-09-06 14:23+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,15 +28,15 @@ msgstr "영어"
 
 #: .\reservations\models.py:26
 msgid "Pending"
-msgstr "예약 대기 중입니다."
+msgstr "예약 대기"
 
 #: .\reservations\models.py:27
 msgid "Confirmed"
-msgstr "예약 확정되었습니다."
+msgstr "예약 확정"
 
 #: .\reservations\models.py:28
 msgid "Canceled"
-msgstr "예약 취소되었습니다."
+msgstr "예약 취소"
 
 #: .\restaurants\models.py:126
 msgid "How many people will be staying?"
@@ -118,6 +118,10 @@ msgstr "로그인"
 msgid "Sign up"
 msgstr "계정 생성"
 
+#: .\templates\partials\social_login.html:6
+msgid "Log in with Kakao"
+msgstr "카카오계정으로 연동하기"
+
 #: .\templates\reservations\choose_detail.html:15
 msgid "Lunch"
 msgstr "점심"
@@ -132,7 +136,7 @@ msgstr "예약 할 인원"
 
 #: .\templates\reservations\choose_detail.html:80
 msgid "Make Reservation"
-msgstr "예약이 완료되었습니다."
+msgstr "예약하기"
 
 #: .\templates\reservations\detail.html:41
 msgid "Contact your Guest"
@@ -144,7 +148,7 @@ msgstr "호스트에게 연락해보세요!"
 
 #: .\templates\reservations\detail.html:46
 msgid "Send a Message"
-msgstr "메시지를 작성해주세요."
+msgstr "메시지 보내기"
 
 #: .\templates\reservations\detail.html:54
 msgid "Write your review"
@@ -212,20 +216,23 @@ msgstr "즐겨찾기에서 삭제"
 msgid "Add to Favourites"
 msgstr "즐겨찾기에 저장"
 
-#: .\templates\restaurants\restaurant_detail.html:48
-#| msgid "guest"
+#: .\templates\restaurants\restaurant_detail.html:46
 msgid "guests"
 msgstr "명 최대 예약 가능"
 
-#: .\templates\restaurants\restaurant_detail.html:108
+#: .\templates\restaurants\restaurant_detail.html:109
 msgid "Reviews"
-msgstr "후기 작성"
+msgstr "후기"
 
-#: .\templates\restaurants\restaurant_detail.html:140
+#: .\templates\restaurants\restaurant_detail.html:118
+msgid "reviews"
+msgstr "개의 작성된 후기"
+
+#: .\templates\restaurants\restaurant_detail.html:141
 msgid "Edit Restaurant"
 msgstr "장소 수정하기"
 
-#: .\templates\restaurants\restaurant_detail.html:177
+#: .\templates\restaurants\restaurant_detail.html:178
 msgid "Best Menu"
 msgstr "대표 메뉴"
 
@@ -250,7 +257,7 @@ msgstr "삭제"
 
 #: .\templates\restaurants\restaurant_photos.html:36
 msgid "Back to edit restaurant"
-msgstr "음식점 수정으로 돌아가기"
+msgstr "장소 수정으로 돌아가기"
 
 #: .\templates\restaurants\search.html:14
 #: .\templates\restaurants\search.html:18
@@ -327,7 +334,10 @@ msgstr "언어"
 
 #: .\users\models.py:76
 msgid "Verify Your Account"
-msgstr "계정 확인"
+msgstr "계정 인증"
+
+#~ msgid "review{{restaurant.reviews.count|pluralize}}"
+#~ msgstr "개의 작성된 후기"
 
 #~ msgid "Create Room"
 #~ msgstr "방 만들기"
