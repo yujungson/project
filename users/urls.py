@@ -18,5 +18,16 @@ urlpatterns = [
     path("switch-hosting/", views.switch_hosting, name="switch-hosting"),
     path("switch-language/", views.switch_language, name="switch-language"),
     path("guest/<int:pk>/", views.show_guest_reservation, name="guest-reservation"),
-    path("host/<int:pk>/", views.show_host_reservation, name="host-reservation",),
+    path(
+        "host/<int:pk>/",
+        views.show_host_reservation,
+        name="host-reservation",
+    ),
+    path("<int:pk>/photos/", views.UserPhotosView.as_view(), name="photos"),
+    path("<int:pk>/photos/add", views.AddPhotoView.as_view(), name="add-photo"),
+    path(
+        "<int:user_pk>/photos/<int:photo_pk>/delete",
+        views.delete_photo,
+        name="delete-photo",
+    ),
 ]

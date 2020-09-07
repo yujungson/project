@@ -1,4 +1,5 @@
 from django.http import Http404
+from django.utils.translation import gettext_lazy as _
 from django.views.generic import ListView, DetailView, View, UpdateView, FormView
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.decorators import login_required
@@ -105,7 +106,11 @@ class SearchView(View):
         else:
             form = forms.SearchForm()
 
-        return render(request, "restaurants/search.html", {"form": form},)
+        return render(
+            request,
+            "restaurants/search.html",
+            {"form": form},
+        )
 
 
 class EditRestaurantView(user_mixins.LoggedInOnlyView, UpdateView):
@@ -165,10 +170,10 @@ def delete_photo(request, restaurant_pk, photo_pk):
     try:
         restaurant = models.Restaurant.objects.get(pk=restaurant_pk)
         if restaurant.host.pk != user.pk:
-            messages.error(request, "Cant delete that photo")
+            messages.error(request, _("Can't delete that photo"))
         else:
             models.Photo.objects.filter(pk=photo_pk).delete()
-            messages.success(request, "Photo Deleted")
+            messages.success(request, _("Photo Deleted"))
         return redirect(reverse("restaurants:photos", kwargs={"pk": restaurant_pk}))
     except models.Restaurant.DoesNotExist:
         return redirect(reverse("core:home"))
@@ -179,7 +184,7 @@ class EditPhotoView(user_mixins.LoggedInOnlyView, SuccessMessageMixin, UpdateVie
     model = models.Photo
     template_name = "restaurants/photo_edit.html"
     pk_url_kwarg = "photo_pk"
-    success_message = "Photo Updated"
+    success_message = _("Photo Updated")
     fields = ("caption",)
 
     def get_success_url(self):
@@ -195,7 +200,7 @@ class AddPhotoView(user_mixins.LoggedInOnlyView, FormView):
     def form_valid(self, form):
         pk = self.kwargs.get("pk")
         form.save(pk)
-        messages.success(self.request, "Photo Uploaded")
+        messages.success(self.request, _("Photo Uploaded"))
         return redirect(reverse("restaurants:photos", kwargs={"pk": pk}))
 
 

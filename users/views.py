@@ -1,6 +1,7 @@
 import os
 import requests
 from django.utils import translation
+from django.utils.translation import gettext_lazy as _
 from django.http import HttpResponse
 from django.contrib.auth.views import PasswordChangeView
 from django.views.generic import FormView, DetailView, UpdateView
@@ -14,6 +15,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from restaurants import models as restaurant_models
 from reservations import models as reservation_models
 from . import forms, models, mixins
+
+from django.http import Http404
 
 
 class LoginView(mixins.LoggedOutOnlyView, FormView):
@@ -38,12 +41,12 @@ class LoginView(mixins.LoggedOutOnlyView, FormView):
 
 
 def log_out(request):
-    messages.info(request, "See you later")
     logout(request)
+    messages.info(request, _("See you later"))
     return redirect(reverse("core:home"))
 
 
-class SignUpView(mixins.LoggedOutOnlyView, FormView):
+class SignUpView(FormView):
 
     template_name = "users/signup.html"
     form_class = forms.SignUpForm
@@ -94,32 +97,29 @@ def kakao_callback(request):
         token_json = token_request.json()
         error = token_json.get("error", None)
         if error is not None:
-            raise KakaoException("Can't get authorization code.")
+            raise KakaoException(_("Can't get authorization code."))
         access_token = token_json.get("access_token")
         profile_request = requests.get(
-            "https://kapi.kakao.com/v2/user/me",
+            "https://kapi.kakao.com/v1/user/me",
             headers={"Authorization": f"Bearer {access_token}"},
         )
         profile_json = profile_request.json()
-
-        kakao_account = profile_json.get("kakao_account")
-        email = kakao_account.get("email", None)
-
+        email = profile_json.get("kaccount_email", None)
         if email is None:
-            raise KakaoException("Please also give me your email")
+            raise KakaoException(_("Please also give me your email"))
         properties = profile_json.get("properties")
         nickname = properties.get("nickname")
         profile_image = properties.get("profile_image")
         try:
             user = models.User.objects.get(email=email)
-            if user.login_method != models.User.LOGING_KAKAO:
+            if user.login_method != models.User.LOGIN_KAKAO:
                 raise KakaoException(f"Please log in with: {user.login_method}")
         except models.User.DoesNotExist:
             user = models.User.objects.create(
                 email=email,
                 username=email,
                 first_name=nickname,
-                login_method=models.User.LOGING_KAKAO,
+                login_method=models.User.LOGIN_KAKAO,
                 email_verified=True,
             )
             user.set_unusable_password()
@@ -147,15 +147,15 @@ class UpdateProfileView(mixins.LoggedInOnlyView, SuccessMessageMixin, UpdateView
     model = models.User
     template_name = "users/update-profile.html"
     fields = (
-        "email",
         "first_name",
         "last_name",
+        "email",
         "gender",
-        "bio",
-        "birthdate",
         "language",
+        "birthdate",
+        "self_introduction",
     )
-    success_message = "Profile Updated"
+    success_message = _("Profile Updated")
 
     def get_object(self, queryset=None):
         return self.request.user
@@ -169,7 +169,7 @@ class UpdatePasswordView(
 ):
 
     template_name = "users/update-password.html"
-    success_message = "Password Updated"
+    success_message = _("Password Updated")
 
     def get_success_url(self):
         return self.request.user.get_absolute_url()
@@ -211,3 +211,43 @@ def show_host_reservation(request, *args, **kwargs):
         "reservations/host_reservation.html",
         {"reservation": reservation, "restaurant": restaurant},
     )
+
+    # 사진
+
+
+class UserPhotosView(mixins.LoggedInOnlyView, DetailView):
+
+    model = models.User
+    template_name = "users/users_photos.html"
+
+    def get_object(self, queryset=None):
+        user = super().get_object(queryset=queryset)
+        if user.pk != self.request.user.pk:
+            raise Http404()
+        return user
+
+
+@login_required
+def delete_photo(request, user_pk, photo_pk):
+    user = request.user
+    try:
+        if user.pk != user.pk:
+            messages.error(request, _("Can't delete that photo"))
+        else:
+            models.Photo.objects.filter(pk=photo_pk).delete()
+            messages.success(request, _("Photo Deleted"))
+        return redirect(reverse("users:photos", kwargs={"pk": user_pk}))
+    except models.User.DoesNotExist:
+        return redirect(reverse("core:home"))
+
+
+class AddPhotoView(mixins.LoggedInOnlyView, FormView):
+
+    template_name = "users/users_photo_create.html"
+    form_class = forms.CreatePhotoForm
+
+    def form_valid(self, form):
+        pk = self.kwargs.get("pk")
+        form.save(pk)
+        messages.success(self.request, _("Photo Uploaded"))
+        return redirect(reverse("users:photos", kwargs={"pk": pk}))

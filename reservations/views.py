@@ -1,4 +1,5 @@
 import datetime
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.contrib import messages
@@ -22,7 +23,7 @@ def create(request, restaurant, year, month, day, time, numOfGuests):
         )
         raise CreateError()
     except (restaurant_models.Restaurant.DoesNotExist, CreateError):
-        messages.error(request, "This is the time that has already been reserved.")
+        messages.error(request, _("This is the time that has already been reserved."))
         return render(
             request,
             "reservations/choose_detail.html",
@@ -37,7 +38,7 @@ def create(request, restaurant, year, month, day, time, numOfGuests):
             time=time,
             numOfGuests=numOfGuests,
         )
-        messages.success(request, "Reserved Successfully")
+        messages.success(request, _("Reserved Successfully"))
         return redirect(reverse("reservations:detail", kwargs={"pk": reservation.pk}))
 
 
@@ -77,7 +78,9 @@ def reservation_detail(request, pk):
         raise Http404()
     form = review_forms.CreateReviewForm()
     return render(
-        request, "reservations/detail.html", {"reservation": reservation, "form": form},
+        request,
+        "reservations/detail.html",
+        {"reservation": reservation, "form": form},
     )
 
 
@@ -94,6 +97,5 @@ def edit_reservation(request, pk, verb):
         reservation.status = models.Reservation.STATUS_CANCELED
         models.BookedDay.objects.filter(reservation=reservation).delete()
     reservation.save()
-    messages.success(request, "Reservation Updated")
+    messages.success(request, _("Reservation Updated"))
     return redirect(reverse("reservations:detail", kwargs={"pk": reservation.pk}))
-

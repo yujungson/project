@@ -2,45 +2,45 @@
 @tailwind components;
 
 .search-box {
-    transition: box-shadow 0.2s linear;
-  }
-  
-  .nav_link {
-    @apply ml-6 border-b-2 border-white h-full flex items-center;
-    a {
-      @apply py-8 px-5;
-    }
-    &:hover {
-      @apply border-gray-600;
-    }
-  }
+  transition: box-shadow 0.2s linear;
+}
 
-  .btn {
-    @apply text-center rounded-sm py-5 font-light text-lg w-full;
+.nav_link {
+  @apply ml-6 border-b-2 border-white h-full flex items-center;
+  a {
+    @apply py-8 px-5;
   }
-  
-  .btn-link {
-    @apply text-center py-3 rounded-lg font-light text-lg w-full text-white bg-red-500;
+  &:hover {
+    @apply border-gray-600;
   }
-  
-  input,
-  textarea,
-  select {
-    @apply rounded-sm py-5 font-light text-lg w-full text-left border border-gray-600 px-5;
-    &:focus-visible {
-      @apply outline-none border-teal-500;
-    }
+}
+
+.btn {
+  @apply text-center rounded-sm py-5 font-light text-lg w-full;
+}
+
+.btn-link {
+  @apply text-center py-3 rounded-lg font-light text-lg w-full text-white bg-red-500;
+}
+
+input,
+textarea,
+select {
+  @apply rounded-sm py-5 font-light text-lg w-full text-left border border-gray-600 px-5;
+  &:focus-visible {
+    @apply outline-none border-teal-500;
   }
-  
-  textarea {
-    resize: none;
-    height: 100px;
-  }
-  
-  select {
-    height: 80px;
-  }
-  
+}
+
+textarea {
+  resize: none;
+  height: 100px;
+}
+
+select {
+  height: 80px;
+}
+
 #id_instant_book,
 #id_service_options,
 #id_highlights,
@@ -67,92 +67,94 @@
 }
 
 form {
-    .input {
-      @apply mb-3 w-full;
-      &.has_error {
-        input {
-          @apply bg-red-200 border-gray-600;
-          &:focus {
-            @apply border-gray-600;
+  .input {
+    @apply mb-3 w-full;
+    &.has_error {
+      input {
+        @apply bg-red-200 border-gray-600;
+        &:focus {
+          @apply border-gray-600;
+        }
+      }
+    }
+  }
+  p{
+    @apply flex;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    label{
+      @apply block w-40 uppercase text-sm border border-2 rounded-sm px-4 py-2 bg-gray-300 whitespace-no-wrap text-center;
+    }
+    input{
+      @apply px-4 py-2 w-full;
+    }
+  }
+}
+
+
+
+@keyframes messageFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  5% {
+    opacity: 1;
+    transform: translateY(50px);
+  }
+  95% {
+    opacity: 1;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}
+
+.message {
+  animation: messageFadeIn 5s ease-in-out forwards;
+  &.error {
+    @apply bg-red-600;
+  }
+  &.info {
+    @apply bg-blue-500;
+  }
+  &.success {
+    @apply bg-green-500;
+  }
+  &.warning {
+    @apply bg-yellow-400;
+  }
+}
+
+.border-section {
+  @apply border-b border-gray-400 pb-8 mt-8;
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 10px;
+  justify-items: center;
+}
+
+.cal-number {
+  @apply w-full text-center rounded p-1 cursor-pointer;
+}
+
+body{
+  header{
+    div{
+      form{
+        div{
+          input{
+            width: 150%;
           }
         }
       }
     }
-    p{
-      @apply flex;
-      padding-bottom: 5px;
-      padding-top: 5px;
-      label{
-        @apply block w-40 uppercase text-sm border border-2 rounded-sm px-4 py-2 bg-gray-300 whitespace-no-wrap text-center;
-      }
-      input{
-        @apply px-4 py-2 w-full;
-      }
-    }
-}
-  
-@keyframes messageFadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(-50px);
-    }
-    5% {
-      opacity: 1;
-      transform: translateY(50px);
-    }
-    95% {
-      opacity: 1;
-      transform: translateY(50px);
-    }
-    100% {
-      opacity: 0;
-      transform: translateY(-50px);
-    }
-}
-  
-.message {
-    animation: messageFadeIn 5s ease-in-out forwards;
-    &.error {
-      @apply bg-red-600;
-    }
-    &.info {
-      @apply bg-blue-500;
-    }
-    &.success {
-      @apply bg-green-500;
-    }
-    &.warning {
-      @apply bg-yellow-400;
-    }
-}
-  
-.border-section {
-    @apply border-b border-gray-400 pb-8 mt-8;
-}
-  
-.cal-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-gap: 10px;
-    justify-items: center;
-}
-  
-.cal-number {
-    @apply w-full text-center rounded p-1 cursor-pointer;
-}
-
-body{
-    header{
-        div{
-            form{
-                div{
-                    input{
-                        width:150%;
-                    }
-                }
-            }
-        }
-    }
+  }
 }
 
 @tailwind utilities;

@@ -1,14 +1,10 @@
-<div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
+<div class="w-full max-w-sm mx-auto my-2 rounded-md shadow-md overflow-hidden">
     <a href="{% url 'restaurants:detail' restaurant.pk %}">
         <div class="flex items-end justify-end h-56 w-full bg-cover"
             style="background-image: url({{restaurant.first_photo}});">
         </div>
         <div class="flex justify-between mb-2 mx-5 my-2">
             <div class="w-4/5 block truncate overflos-hidden flex">
-                {% if restaurant.host.superhost %}
-                <span
-                    class="mr-2 uppercase font-medium text-xs border border-black text-black rounded py-px px-1">superhost</span>
-                {% endif %}
                 <span class="text-sm text-gray-600 block truncate font-light">{{restaurant.city}}</span>
             </div>
 

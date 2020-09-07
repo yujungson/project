@@ -8,6 +8,15 @@ from django.utils.html import strip_tags
 from django.shortcuts import reverse
 from django.template.loader import render_to_string
 from core import managers as core_managers
+from core import models as core_models
+
+
+class Photo(core_models.TimeStampedModel):
+
+    """ Photo Model Definition """
+
+    file = models.ImageField(upload_to="avatars")
+    user = models.ForeignKey("User", related_name="photos", on_delete=models.CASCADE)
 
 
 class User(AbstractUser):
@@ -33,20 +42,19 @@ class User(AbstractUser):
     )
 
     LOGIN_EMAIL = "email"
-    LOGING_KAKAO = "kakao"
+    LOGIN_KAKAO = "kakao"
 
     LOGIN_CHOICES = (
         (LOGIN_EMAIL, "Email"),
-        (LOGING_KAKAO, "Kakao"),
+        (LOGIN_KAKAO, "Kakao"),
     )
 
     first_name = models.CharField(_("first name"), max_length=30, blank=True)
-    avatar = models.ImageField(upload_to="avatars", blank=True)
     gender = models.CharField(
         _("gender"), choices=GENDER_CHOICES, max_length=10, blank=True
     )
-    bio = models.TextField(_("bio"), blank=True)
-    birthdate = models.DateField(blank=True, null=True)
+    self_introduction = models.TextField(_("self_introduction"), blank=True)
+    birthdate = models.DateField(_("birthdate"), blank=True, null=True)
     language = models.CharField(
         _("language"),
         choices=LANGUAGE_CHOICES,
@@ -82,3 +90,10 @@ class User(AbstractUser):
             )
             self.save()
         return
+
+    def first_photo(self):
+        try:
+            (photo,) = self.photos.all()[:1]
+            return photo.file.url
+        except ValueError:
+            return None
