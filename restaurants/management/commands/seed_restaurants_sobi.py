@@ -29,7 +29,7 @@ class Command(BaseCommand):
                 "address": "경기도 고양시 일산동구 대산로31번길 67",
                 "host": lambda x: random.choice(all_users),
                 "service_options": lambda x: random.choice(service_options),
-                "guests": random.randint(1, 4),
+                "guests": lambda x: random.randint(2, 4),
                 "description": "따뜻한 분위기의 특색있는 메뉴가 있는 곳",
                 "menu_1": "아메리카노",
                 "price_1": "4000",

@@ -29,7 +29,7 @@ class Command(BaseCommand):
                 "address": "경기도 고양시 일산동구 율천로7번길 10",
                 "host": lambda x: random.choice(all_users),
                 "service_options": lambda x: random.choice(service_options),
-                "guests": random.randint(1, 4),
+                "guests": lambda x: random.randint(4, 6),
                 "description": "진한 국물에 고소한 대창 튀김을 올린 라멘을 맛볼 수 있는 곳",
                 "menu_1": "계단라멘",
                 "price_1": "8000",

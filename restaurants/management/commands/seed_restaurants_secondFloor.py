@@ -29,7 +29,7 @@ class Command(BaseCommand):
                 "address": "서울 종로구 돈화문로11나길 28",
                 "host": lambda x: random.choice(all_users),
                 "service_options": lambda x: random.choice(service_options),
-                "guests": random.randint(1, 3),
+                "guests": lambda x: random.randint(2, 4),
                 "description": "푸짐한 양에 맛있는 파스타가 있는 곳",
                 "menu_1": "스파이시 파스타",
                 "price_1": "12000",

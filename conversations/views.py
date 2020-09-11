@@ -3,7 +3,7 @@ from django.http import Http404
 from django.shortcuts import redirect, reverse, render
 from django.views.generic import View
 from users import models as user_models
-from . import models, forms
+from . import models
 
 
 def go_conversation(request, a_pk, b_pk):
@@ -11,9 +11,10 @@ def go_conversation(request, a_pk, b_pk):
     user_two = user_models.User.objects.get_or_none(pk=b_pk)
     if user_one is not None and user_two is not None:
         try:
-            conversation = models.Conversation.objects.get(
+            conversation = models.Conversation.objects.filter(
                 Q(participants=user_one) & Q(participants=user_two)
             )
+            print(conversation)
         except models.Conversation.DoesNotExist:
             conversation = models.Conversation.objects.create()
             conversation.participants.add(user_one, user_two)

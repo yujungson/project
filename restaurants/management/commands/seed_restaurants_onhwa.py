@@ -29,7 +29,7 @@ class Command(BaseCommand):
                 "address": "서울 송파구 백제고분로 45길 15 2층",
                 "host": lambda x: random.choice(all_users),
                 "service_options": lambda x: random.choice(service_options),
-                "guests": random.randint(1, 3),
+                "guests": lambda x: random.randint(2, 4),
                 "description": "수플레 팬 케이크, 드립커피 전문점",
                 "menu_1": "수플레 팬케이크 플레인",
                 "price_1": "16000",
@@ -37,6 +37,10 @@ class Command(BaseCommand):
                 "price_2": "20000",
                 "menu_3": "핸드드립 온",
                 "price_3": "5900",
+                "menu_4": "핸드드립 화",
+                "price_4": "5900",
+                "menu_5": "과일소다 오몽",
+                "price_5": "8000",
             },
         )
         created_photos = seeder.execute()

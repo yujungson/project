@@ -29,7 +29,7 @@ class Command(BaseCommand):
                 "address": "서울 마포구 동교로 238-1",
                 "host": lambda x: random.choice(all_users),
                 "service_options": lambda x: random.choice(service_options),
-                "guests": random.randint(1, 3),
+                "guests": lambda x: random.randint(4, 6),
                 "description": "인생 카츠를 만날 수 있는 곳",
                 "menu_1": "서울 수육카츠",
                 "price_1": "18900",

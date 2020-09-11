@@ -29,7 +29,7 @@ class Command(BaseCommand):
                 "address": "경기도 고양시 일산동구 일산로463번길 39",
                 "host": lambda x: random.choice(all_users),
                 "service_options": lambda x: random.choice(service_options),
-                "guests": random.randint(1, 4),
+                "guests": lambda x: random.randint(1, 4),
                 "description": "조용한 분위기에 맛있는 식사를 할 수 있는 곳",
                 "menu_1": "스테이크 샐러드",
                 "price_1": "14000",

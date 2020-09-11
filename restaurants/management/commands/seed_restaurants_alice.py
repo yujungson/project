@@ -29,7 +29,7 @@ class Command(BaseCommand):
                 "address": "경기도 고양시 일산동구 일산로358번길 37 1층",
                 "host": lambda x: random.choice(all_users),
                 "service_options": lambda x: random.choice(service_options),
-                "guests": lambda x: random.randint(1, 3),
+                "guests": lambda x: random.randint(4, 8),
                 "description": "다양한 케이크와 커피를 맛볼 수 있는 곳",
                 "menu_1": "아메리카노",
                 "price_1": "3500",

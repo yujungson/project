@@ -62,12 +62,18 @@ Reservation {{reservation.date}} {{reservation.time}}
             <a href="{% url 'reservations:edit' reservation.pk 'cancel' %}" class="btn-link block px-5 mb-3">
                 {% trans "Cancel Reservation" %}
             </a>
+            {% endif %}
+            {% endif %}
+            {% endif %}
+            {% else %}
             {% if reservation.restaurant.host == user  %}
-            <a href="{% url 'reservations:edit' reservation.pk 'confirm' %}" class="btn-link block px-3 mb-5">
+            {% if reservation.status == 'pending' %}
+            <a href="{% url 'reservations:edit' reservation.pk 'confirm' %}" class="btn-link px-3 mb-5 mr-10">
                 {% trans "Confirm Reservation" %}
             </a>
-            {% endif %}
-            {% endif %}
+            <a href="{% url 'reservations:edit' reservation.pk 'cancel' %}" class="btn-link px-5 mb-3">
+                {% trans "Cancel Reservation" %}
+            </a>
             {% endif %}
             {% endif %}
             {% endif %}
