@@ -1,4 +1,3 @@
-from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import redirect, reverse, render
 from django.views.generic import View
@@ -12,8 +11,8 @@ def go_conversation(request, a_pk, b_pk):
     if user_one is not None and user_two is not None:
         try:
             conversation = models.Conversation.objects.filter(
-                Q(participants=user_one) & Q(participants=user_two)
-            )
+                participants=user_one
+            ).get(participants=user_two)
             print(conversation)
         except models.Conversation.DoesNotExist:
             conversation = models.Conversation.objects.create()
