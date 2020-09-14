@@ -52,7 +52,6 @@ coverage.xml
 cover/
 
 # Translations
-*.mo
 *.pot
 
 # Django stuff:
@@ -137,7 +136,6 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-uploads/
 node_modules/
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
