@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-07 19:26+0900\n"
+"POT-Creation-Date: 2020-09-17 00:05+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,6 +69,26 @@ msgstr "사진이 업데이트되었습니다"
 #: .\restaurants\views.py:203 .\users\views.py:255
 msgid "Photo Uploaded"
 msgstr "사진이 업로드되었습니다"
+
+#: .\reviews\forms.py:7
+msgid "accuracy"
+msgstr "정확성"
+
+#: .\reviews\forms.py:9
+msgid "communication"
+msgstr "의사소통"
+
+#: .\reviews\forms.py:11
+msgid "cleanliness"
+msgstr "청결"
+
+#: .\reviews\forms.py:12
+msgid "location"
+msgstr "위치"
+
+#: .\reviews\forms.py:13
+msgid "taste"
+msgstr "맛"
 
 #: .\templates\base.html:24
 msgid "Search_by_city"
@@ -187,10 +207,11 @@ msgid "Submit Review"
 msgstr "후기 작성"
 
 #: .\templates\reservations\detail.html:63
+#: .\templates\reservations\detail.html:75
 msgid "Cancel Reservation"
 msgstr "예약 취소하기"
 
-#: .\templates\reservations\detail.html:67
+#: .\templates\reservations\detail.html:72
 msgid "Confirm Reservation"
 msgstr "예약 확정하기"
 
@@ -427,6 +448,12 @@ msgstr "프로필이 업데이트 되었습니다"
 #: .\users\views.py:175
 msgid "Password Updated"
 msgstr "비밀번호가 변경되었습니다"
+
+#~ msgid "review"
+#~ msgstr "고객님의 의견"
+
+#~ msgid "value"
+#~ msgstr "맛"
 
 #~ msgid "Please login with: "
 #~ msgstr "이 수단으로 로그인해주세요: "

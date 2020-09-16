@@ -20,10 +20,7 @@ class Review(core_models.TimeStampedModel):
     location = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
-    check_in = models.IntegerField(
-        validators=[MinValueValidator(1), MaxValueValidator(5)]
-    )
-    value = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    taste = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
     user = models.ForeignKey(
         "users.User", related_name="reviews", on_delete=models.CASCADE
     )
