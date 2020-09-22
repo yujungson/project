@@ -9,7 +9,6 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect, reverse, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.core.files.base import ContentFile
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from restaurants import models as restaurant_models
@@ -59,7 +58,8 @@ class SignUpView(FormView):
         user = authenticate(self.request, username=email, password=password)
         if user is not None:
             login(self.request, user)
-        user.verify_email()
+        if email == "dbwjddbwjd@gmail.com":
+            user.verify_email()
         return super().form_valid(form)
 
 
@@ -112,7 +112,6 @@ def kakao_callback(request):
             raise KakaoException(_("Please also give me your email"))
         properties = profile_json.get("properties")
         nickname = properties.get("nickname")
-        profile_image = properties.get("profile_image")
         try:
             user = models.User.objects.get(email=email)
             if user.login_method != models.User.LOGIN_KAKAO:
@@ -127,11 +126,6 @@ def kakao_callback(request):
             )
             user.set_unusable_password()
             user.save()
-            if profile_image is not None:
-                photo_request = requests.get(profile_image)
-                user.avatar.save(
-                    f"{nickname}-avatar", ContentFile(photo_request.content)
-                )
         messages.success(request, f"Welcome back {user.first_name}")
         login(request, user)
         return redirect(reverse("core:home"))
